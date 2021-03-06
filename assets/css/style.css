@@ -8,3 +8,8 @@ body {
     border: 2px solid rgb(110, 110, 110);
     margin: 10px;
 }
+
+.safe-span {
+    background-color: green;
+    color: aqua;
+}
