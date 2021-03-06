@@ -63,11 +63,13 @@ let getBreweries = function () {
             if(response[i].state == state) {
 
 //Dynamically create divs for Brewery information
-                console.log(response[i])
-                let brewName = $('<div>').text(response[i].name)
-                let brewStreet = $('<div>').text(response[i].street)
-                let brewWeb = $('<a href='+ response[i].website_url +'>').text(response[i].website_url)
-                resultContainer.append(brewName, brewStreet, brewWeb)
+              console.log(response[i])
+              let resultDiv = $('<div class=\"result-div\" id=\"result' + i + '\"></div>')
+              let brewName = $('<div>').text(response[i].name)
+              let brewStreet = $('<div>').text(response[i].street)
+              let brewWeb = $('<a href='+ response[i].website_url +'>').text(response[i].website_url)
+              resultContainer.append(resultDiv)
+              resultDiv.append(brewName, brewStreet, brewWeb)
             }
             }    
         })       

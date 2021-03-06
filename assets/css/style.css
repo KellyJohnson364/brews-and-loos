@@ -4,4 +4,7 @@ body {
     background-color: darksalmon;
 }
 
-
+.result-div {
+    border: 2px solid rgb(110, 110, 110);
+    margin: 10px;
+}
