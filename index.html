@@ -15,10 +15,9 @@
                 <div class="control">
                   <input class="input" type="text" placeholder="Search a city: ">
                 </div>
-                <div> 
-                  <label for="state">select the State</label>
-                    <select name="state" id="state">
-                      <option value=""></option>
+                <div class="select is-multiple"> 
+                  <select id="state">
+                      <option value="">Select a State</option>
                       <option value="AL">Alabama</option>
                       <option value="AK">Alaska</option>
                       <option value="AZ">Arizona</option>
@@ -81,8 +80,19 @@
               </div>
         </header>
 
-        <main>
-           
+        <main class="columns">
+          
+          <div class="modal">
+             <p>Please select a city and a state.</p>
+              <footer class="modal-card-foot">
+                <button class="button close">OK</button>
+              </footer>
+          </div>
+          
+          <div class=" column results is-two-thirds"></div>
+          <div class="columm fav-div is-one-third">
+            <p>Favorite or City buttons or whatever</p>
+          </div>
         </main>
         
         <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
