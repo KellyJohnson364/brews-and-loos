@@ -9,21 +9,21 @@
     </head>
 
     <body>
-        <header>
-            <h1 class="title is-1">Brews and Loos</h1>
+        <header class="level">
+            <h1 class="title is-offset-1 is-1 has-text-white is-full-desktop is-full-tablet ">Brews and Loos</h1>
             <div class="field has-addons">
                 <div class="control">
-                  <input class="input" type="text" placeholder="Search a city: ">
+                  <input class="input is-small column is-half-desktop is-full-mobile" type="text" placeholder="Search a city: ">
                 </div>
                 <div> 
-                  <label for="state">select the State</label>
+                  <label for="state" class="dropdown-menu column is-full-mobile"></label>
                     <select name="state" id="state">
-                      <option value=""></option>
+                      <option >Select State</option>
                       <option value="AL">Alabama</option>
                       <option value="AK">Alaska</option>
                       <option value="AZ">Arizona</option>
                       <option value="AR">Arkansas</option>
-                      <option value="CA">California</option>
+                      <option value="CA">California</option> 
                       <option value="CO">Colorado</option>
                       <option value="CT">Connecticut</option>
                       <option value="DE">Delaware</option>
@@ -74,7 +74,7 @@
                        
                 </div>
                 <div class="control">
-                  <a class="button is-info">
+                  <a class="button is-warning column is-full">
                     Search
                   </a>
                 </div>
