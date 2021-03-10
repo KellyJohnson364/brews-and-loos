@@ -22,19 +22,19 @@ let formSubmitHandler = function (event) {
     state = $('#state option:selected').text();  
     city = cityInputEl.val();
 
-// Ensure both fields are selected and call functions
+    // Ensure both fields are selected and call functions
     if (city && (state !== "Select a State" )) {
       city = city.replaceAll(" ", "%20");
       getBreweries()
       getRestrooms();
-//reset for new search    
+      //reset for new search    
       cityInputEl.val('')
       stateInputEl.val('')
       $('.result-div').remove();
       breweries=[]
     } else {
 
-//modal for city and state entry     
+      //modal for city and state entry
       $(".selectCityState").addClass("is-active")
       $(".close").click(function() {
          $(".selectCityState").removeClass("is-active");
@@ -158,19 +158,20 @@ function nearestRestroom() {
        .then(stuff => stuff.json())
        .then(function(stuff) {
          console.log(stuff)
-  if (stuff[0] !== undefined) {
-    let nearestTitle = $('<div class="nearestTitle"></div>').text('Nearest Gender-Neutral Bathroom:');
-    let nearestName = $('<div class="nearestName"></div>').text(''+ stuff[0].name +'');
-    let nearestStreet = $('<div class="nearestStreet"></div>').text(''+ stuff[0].street +'');
-    console.log( $("#result" + index))
-    $(".btn" + classCounter).after(nearestTitle, nearestName, nearestStreet);
-    $(".btn" + classCounter).remove();
-  }else {
-    let apology = $('<div></div>').text('No unisex restrooms found in search area')
-    nearBtn.replaceWith(apology)
-  }
+          if (stuff[0] !== undefined) {
+            let nearestTitle = $('<div class="nearestTitle"></div>').text('Nearest Gender-Neutral Bathroom:');
+            let nearestName = $('<div class="nearestName"></div>').text(''+ stuff[0].name +'');
+            let nearestStreet = $('<div class="nearestStreet"></div>').text(''+ stuff[0].street +'');
+            console.log( $("#result" + index))
+            $(".btn" + classCounter).after(nearestTitle, nearestName, nearestStreet);
+            $(".btn" + classCounter).remove();
+          }else {
+            let apology = $('<div></div>').text('No unisex restrooms found in search area')
+            nearBtn.replaceWith(apology)
+          }
 
-})
+        })
+  }
 };
 
 // delegated event handler for saving brewery/bathroom info 
@@ -191,6 +192,7 @@ resultContainer.on("click", ".save-button", function() {
       history.append('<div class="result-div">' + thisBrew + '</div>');
       history.children($('#result-div')).children(".save-button").remove();
   };
+
 });
 
 // renders user's recent searches to .history
