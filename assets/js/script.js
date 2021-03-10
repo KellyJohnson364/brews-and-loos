@@ -1,8 +1,7 @@
-let buttonEl = $('.button');
+let buttonEl = $('.search');
 let cityInputEl = $('.input');
 let stateInputEl = $('#state');
 let resultContainer = $('.results');
-let storageContainer = $('.fav-div');
 let city;
 let state;
 let breweries=[];
@@ -39,14 +38,15 @@ let formSubmitHandler = function (event) {
 
 buttonEl.on('click', formSubmitHandler);  
 
-// Fetch lists of safe unisex restrooms using State name and "Brew". 
+// Fetch lists of safe unisex restrooms using city and "Brew". 
 let getRestrooms = function () {
   
   restUrl = 'https://www.refugerestrooms.org/api/v1/restrooms/search?page=&per_page=100&offset=0&unisex=true&query=brew%20'+ city +''
   
     fetch(restUrl).then(answer => answer.json())
       .then(function(answer) {
-   
+       
+        
          
           for (i=0; i<answer.length; i++) {
               for(let k = 0; k < breweries[0].length; k++) {
@@ -80,23 +80,25 @@ let getBreweries = function () {
             });
           }
           console.log(response);
-          $('.description').remove();
+          
           breweries.push(response)  
           // console.log(breweries)
           for (let i=0; i<response.length; i++) {
             if(response[i].state == state) {
-              
+              city = city.replaceAll("%20", " ")  
               //Dynamically create divs for Brewery information
               
-              let resultDiv = $('<div class="result-div" id="result' + i + '"></div>');
-              let brewName = $('<div class="brewName">').text(response[i].name);
-              let brewStreet = $('<div class="brewStreet">').text(response[i].street);
-              let brewWeb = $('<a class="brewLink" href='+ response[i].website_url +'>').text(response[i].website_url);
-              let br = $('<br class="br">')
-              nearBtn = $('<button id="' + i + '" class="near-button button is-small">Find nearest gender-neutral bathroom!</button>');
-              saveBtn = $('<button id="save' + i + '" class="save-button button is-small">Save this brewery</button>');
+              let resultDiv = $('<div class="result-div p-5 ml-6 card" id="result' + i + '"></div>');
+              let brewName = $('<div class="brewName title">').text(response[i].name);
+              let saveBtn = $('<button class="save-button is-pulled-right button">Save this brewery</button>');
+              let brewStreet = $('<div class="brewStreet pt-2">').text(response[i].street)
+              let brewAdd =$('<div class="brewAdd pb-2 is-capitalized">').text(city + ', ' + state);
+              let brewWeb = $('<a class="brewLink" href='+ response[i].website_url +'>').text(response[i].website_url + "  ");
+              
+              nearBtn = $('<button class="near-button mt-3 button  has-text-centered card-footer-item">Find nearest gender-neutral bathroom!</button>');
+              
               resultContainer.append(resultDiv);
-              resultDiv.append(brewName,brewStreet, brewWeb, br, nearBtn, saveBtn);
+              resultDiv.append(brewName,saveBtn, brewStreet, brewAdd, brewWeb, nearBtn);
               if((response[i].latitude) == null) {
                 nearBtn.remove()
               }
@@ -150,10 +152,11 @@ function nearestRestroom() {
        .then(function(stuff) {
          console.log(stuff)
        
-  let nearestTitle = $('<div class="nearestTitle"></div>').text('Nearest Gender-Neutral Bathroom:');
-  let nearestName = $('<div class="nearestName"></div>').text(''+ stuff[0].name +'');
-  let nearestStreet = $('<div class="nearestStreet"></div>').text(''+ stuff[0].street +'');
-  $(".btn" + classCounter).after(nearestTitle, nearestName, nearestStreet);
+  let nearestTitle = $('<div class="nearestTitle mt-6 card-footer"></div>').text('Nearest Gender-Neutral Bathroom:');
+  let nearestName = $('<div class="nearestName mb-1 card-footer-item  subtitle"></div>').text(''+ stuff[0].name +'');
+  let nearestStreet = $('<div class="nearestStreet mx-1 p-1 card-footer-item"></div>').text(''+ stuff[0].street +'');
+  let nearestAddress  =$('<div class="nearestAddress mx-1 p-1 card-footer-item  is-capitalized"></div>').text(city + ', ' + state)
+  $(".btn" + classCounter).after(nearestTitle, nearestName, nearestStreet, nearestAddress);
   $(".btn" + classCounter).remove();
 })
 };

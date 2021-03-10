@@ -1,7 +1,7 @@
 
 
 body {
-    background-color: darksalmon;
+    background-color: rgb(126, 163, 145);
 }
 
 .result-div {
@@ -10,6 +10,6 @@ body {
 }
 
 .safe-div {
-    background-color: green;
-    color: aqua;
+    background-color: rgb(27, 114, 70);
+    color: rgb(0, 255, 157);
 }
