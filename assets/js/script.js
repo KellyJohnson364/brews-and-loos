@@ -6,6 +6,10 @@ let storageContainer = $('.fav-div');
 let city;
 let state;
 let breweries=[];
+let brewLat;
+let brewLong;
+let lat 
+let long
 let index;
 let nearBtn;
 let history = $('.history');
@@ -19,17 +23,18 @@ let formSubmitHandler = function (event) {
     city = cityInputEl.val();
 
 // Ensure both fields are selected and call functions
-    if (city && state) {
+    if (city && (state !== "Select a State" )) {
       city = city.replaceAll(" ", "%20");
       getBreweries()
       getRestrooms();
-  //reset for new search    
+//reset for new search    
       cityInputEl.val('')
       stateInputEl.val('')
       $('.result-div').remove();
       breweries=[]
     } else {
-     
+
+//modal for city and state entry     
       $(".selectCityState").addClass("is-active")
       $(".close").click(function() {
          $(".selectCityState").removeClass("is-active");
@@ -46,8 +51,7 @@ let getRestrooms = function () {
   
     fetch(restUrl).then(answer => answer.json())
       .then(function(answer) {
-   
-         
+        
           for (i=0; i<answer.length; i++) {
               for(let k = 0; k < breweries[0].length; k++) {
                 if ((breweries[0][k].street == answer[i].street) || (breweries[0][k].name == answer[i].name)) {
@@ -68,7 +72,7 @@ let getBreweries = function () {
  
     let brewUrl = 'https://api.openbrewerydb.org/breweries/search?query=' + city +''
 
-    fetch(brewUrl)
+      fetch(brewUrl)
         .then(response => response.json())
         .then(function(response) {
           // in cases where there's no response
@@ -93,12 +97,19 @@ let getBreweries = function () {
               let brewStreet = $('<div class="brewStreet">').text(response[i].street);
               let brewWeb = $('<a class="brewLink" href='+ response[i].website_url +'>').text(response[i].website_url);
               let br = $('<br class="br">')
-              nearBtn = $('<button id="' + i + '" class="near-button button is-small">Find nearest gender-neutral bathroom!</button>');
-              saveBtn = $('<button id="save' + i + '" class="save-button button is-small">Save this brewery</button>');
+              nearBtn = $('<button id="' + i + '" class="near-button button is-small">Find nearest gender-neutral restroom!</button>');
+              saveBtn = $('<button  class="save-button button  is-small">Save this brewery</button>');
+              lat = $('<span class="lt">'+ response[i].latitude +'</span>')
+              long = $('<span class="lng">'+ response[i].longitude +'</span>')
               resultContainer.append(resultDiv);
-              resultDiv.append(brewName,brewStreet, brewWeb, br, nearBtn, saveBtn);
+              resultDiv.append(brewName, saveBtn,brewStreet, brewWeb, br, nearBtn, saveBtn);
+              nearBtn.append(lat, long)
+              $('.lt, .lng').hide();
+              console.log(response)
               if((response[i].latitude) == null) {
-                nearBtn.remove()
+                let brewTel = $('<span class="breTel">').text('Call for additional information: ' + response[i].phone + '  ')
+                nearBtn.replaceWith(brewTel)
+
               }
             }
             }    
@@ -107,27 +118,31 @@ let getBreweries = function () {
       }
 
 // this will be used to line up the rendering in nearestRestroom() with the button that was clicked 
-let classCounter = 0
+    let classCounter = 0
 
 // event handler for fetching nearest gender-neutral bathroom
-resultContainer.on("click", ".near-button", function() {
-    index =($(this).attr('id'))
-  // this will be used to line up the rendering in nearestRestroom() with the button that was clicked 
+  resultContainer.on("click", ".near-button", function() {
+    brewLat =  $(this).children().first().text();
+    brewLong =  $(this).children().last().text();
+  
+    console.log(brewLat)
+// this will be used to line up the rendering in nearestRestroom() with the button that was clicked 
     classCounter++
     $(this).addClass("btn" + classCounter)
- 
-  // calls function for fetching nearest gender-neutral bathroom info
+// calls function for fetching nearest gender-neutral bathroom info
     nearestRestroom();
  
 });
 
 // event handler for fetching nearest gender-neutral bathrom when user clicks from history 
-history.on("click", ".near-button", function() {
-  index = ($(this).attr('id'))
-  classCounter++
-  $(this).addClass("btn" + classCounter)
+  history.on("click", ".near-button", function() {
+    brewLat =  $(this).children().first().text();
+    brewLong =  $(this).children().last().text();
+    console.log(brewLong)
+    classCounter++
+    $(this).addClass("btn" + classCounter)
 
-  nearestRestroom();
+    nearestRestroom();
 })
 
 // function for fetching nearest gender-neutral bathroom info 
@@ -135,43 +150,46 @@ function nearestRestroom() {
 
   if (breweries[0]) {
     // if finding nearest restroom from search result, do this
-    brewLat = breweries[0][index].latitude
-    brewLong = breweries[0][index].longitude
-  } else {
-    // if finding nearest restroom from saved brewery, do this 
-    brewLat = JSON.parse(localStorage.getItem("breweries"))[0][index].latitude
-    brewLong = JSON.parse(localStorage.getItem("breweries"))[0][index].longitude
-  }
-
+  console.log(brewLat)
+  
   nearUrl = 'https://www.refugerestrooms.org/api/v1/restrooms/by_location?page=1&per_page=1&offset=0&unisex=true&lat=' + brewLat +'&lng=' + brewLong + ''
       
    fetch(nearUrl) 
        .then(stuff => stuff.json())
        .then(function(stuff) {
          console.log(stuff)
-       
-  let nearestTitle = $('<div class="nearestTitle"></div>').text('Nearest Gender-Neutral Bathroom:');
-  let nearestName = $('<div class="nearestName"></div>').text(''+ stuff[0].name +'');
-  let nearestStreet = $('<div class="nearestStreet"></div>').text(''+ stuff[0].street +'');
-  $(".btn" + classCounter).after(nearestTitle, nearestName, nearestStreet);
-  $(".btn" + classCounter).remove();
+  if (stuff[0] !== undefined) {
+    let nearestTitle = $('<div class="nearestTitle"></div>').text('Nearest Gender-Neutral Bathroom:');
+    let nearestName = $('<div class="nearestName"></div>').text(''+ stuff[0].name +'');
+    let nearestStreet = $('<div class="nearestStreet"></div>').text(''+ stuff[0].street +'');
+    console.log( $("#result" + index))
+    $(".btn" + classCounter).after(nearestTitle, nearestName, nearestStreet);
+    $(".btn" + classCounter).remove();
+  }else {
+    let apology = $('<div></div>').text('No unisex restrooms found in search area')
+    nearBtn.replaceWith(apology)
+  }
+
 })
 };
 
 // delegated event handler for saving brewery/bathroom info 
 resultContainer.on("click", ".save-button", function() {
+ 
   let thisBrew = $(this).parent().html();
-
+  console.log(thisBrew)
+  console.log(historyStored)
   if (historyStored.includes(thisBrew)) {
 
   } else if (thisBrew == undefined || thisBrew == null) {
 
   } else {
       localStorage.setItem("breweries", JSON.stringify(breweries));
+      console.log(historyStored)
       historyStored.push(thisBrew);
       localStorage.setItem("history-info", JSON.stringify(historyStored));
       history.append('<div class="result-div">' + thisBrew + '</div>');
-      history.children($('.result-div')).children(".save-button").remove();
+      history.children($('#result-div')).children(".save-button").remove();
   };
 });
 
