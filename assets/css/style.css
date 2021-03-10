@@ -1,2 +1,22 @@
 
+body {
+    background-color: darksalmon;
+    min-height: 100 vh;
+}
+
+.result-div {
+    border: 2px solid rgb(110, 110, 110);
+    margin: 10px;
+}
+
+.safe-div {
+    background-color: green;
+    color: aqua;
+}
+
+ .main-header {
+    padding-left: 20px;
+    padding-top: 20px;
+    
+}
 
