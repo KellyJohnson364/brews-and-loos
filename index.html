@@ -10,15 +10,31 @@
     </head>
 
     <body>
-        <header class="has-text-white level ">
-            <h1 class="title is-1 has-text-white">Good Brews and Neutral Loos</h1>
-            <div class="field has-addons is-medium level-right is-align-items-center search-box">
-                <div class="control searchDiv">
-                  <input class="input searchInput" type="text" placeholder="Search a city: ">
-                </div>
-            </div>
-                <div class="select is-multiple selectDiv"> 
-                  <select id="state" >
+
+        <header class=" hero has-text-centered">
+          <div class="hero-body">
+            <h1 class="title box  mx-6 is-1">Good Brews and Neutral Loos</h1>
+            <section class="has-text-centered box">
+              <h2 class="subtitle">Welcome to Good Brews and Neutral Loos</h2>
+              <p>
+                We all love breweries, but we love breweries with gender-neutral bathrooms even more! Search your city or favorite brewery. Breweries with positive gender-neutral restroom ratings will be indicated in your search results. 
+                If gender-neutral restrooms are not available or have not yet been rated, the "Find nearest restroom" button will display the closest positively rated gender-neutral restroom for each brewery.  
+              </p>
+            </section>
+          </div>  
+        </header>
+
+
+          <main >
+            <div class="columns">
+              <div class="column is-two-thirds">
+                <div class=" mb-6 field is-grouped">
+                  <div class="control">
+                    <input class="input mx-5 ml-5 " type="text" placeholder="Search a city or brewery: ">
+                  </div>
+                  <div class="select is-multiple"> 
+                    <select id="state">
+
                       <option value="">Select a State</option>
                       <option value="AL">Alabama</option>
                       <option value="AK">Alaska</option>
@@ -70,52 +86,42 @@
                       <option value="WA">Washington</option>
                       <option value="WV">West Virginia</option>
                       <option value="WI">Wisconsin</option>
-                      <option value="WY">Wyoming</option>
-                    </select>				
-                  </div>
+
+                    </select>	
+                  </div>			      
                   <div class="control">
-                    <a class="button container is-warning button-icon">
-                      <i class="fa fa-search"></i>
+                    <a class="button search is-info">
+                    Search
                     </a>
                   </div>
+                </div>
+                <div class="results">
+                </div>
+              </div>
+              <div class="column has-text-centered">
+                <h2 class="title">Saved Breweries</h2>
+                <div class="history">
+                  <button class="delete-btn button">Delete history</button>
+                </div>
+              </div>
+            </div>  
+            <div class="modal selectCityState">
+              <div class="modal-card">
+                <p>Please select a city and a state.</p>
+                <footer class="modal-card-foot">
 
-        </header>
-
-        <main>
-
-          
-          
-          <div class="modal selectCityState">
-             <p>Please select a city and a state.</p>
-              <footer class="modal-card-foot">
                 <button class="button close">OK</button>
-              </footer>
-          </div>
-          <div class="modal noResponse">
-            <p>Whoops!</p>
-            <br>
-            <p>We didn't recognize that. Please check your spelling and try again.</p>
-             <footer class="modal-card-foot">
-               <button class="button close">OK</button>
-             </footer>
-         </div>
-          
-          <div class=" column results is-two-thirds">
-
-            <section class="container has-text-white description">
-              <h1 class="title has-text-white is-5">Welcome to Good Brews and Neutral Loos</h1>
-              <p>
-                We all love breweries, but we love breweries with gender-neutral bathrooms even more! To see a list of breweries in a city, search for the city above. If a brewery has a gender-neutral bathroom (and if the brewery has made this info available online), we'll tell you in the search results. If not, click the button to see the closest gender-neutral bathroom to the brewery.
-              </p>
-            </section>
-
-          </div>
-          <div class="columm fav-div is-one-third has-text-white history">
-            <h2 class="title is-5 has-text-white savedTitle">Saved Breweries</h2>
-            <div class="isCentered">
-              <button class="button is-warning delete-btn">Delete history</button>
+                </footer>
+              </div>
             </div>
-          </div>
+            <div class="modal noResponse">
+              <p>Whoops!</p>
+              <br>
+              <p>We didn't recognize that. Please check your spelling and try again.</p>
+               <footer class="modal-card-foot">
+               <button class="button close">OK</button>
+              </footer>
+            </div>
         </main>
         
         <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>

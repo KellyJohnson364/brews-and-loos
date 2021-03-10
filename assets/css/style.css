@@ -3,6 +3,8 @@ html {
 }
 
 body {
+
+    background-color: rgb(126, 163, 145);
     min-height: 100 vh;
 }
 
@@ -25,8 +27,10 @@ body {
 }
 
 .safe-div {
-    background-color: green;
-    color: white;
+
+    background-color: rgb(27, 114, 70);
+    color: rgb(0, 255, 157);
+
 }
 
 .main-header {
