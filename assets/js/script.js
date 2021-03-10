@@ -95,14 +95,14 @@ let getBreweries = function () {
               let resultDiv = $('<div class="result-div p-5 ml-6 card" id="result' + i + '"></div>');
               let brewName = $('<div class="brewName title">').text(response[i].name);
               let saveBtn = $('<button class="save-button is-pulled-right button">Save this brewery</button>');
-               let brewStreet = $('<div class="brewStreet pt-2">').text(response[i].street)
+              let brewStreet = $('<div class="brewStreet pt-2">').text(response[i].street)
               let brewAdd =$('<div class="brewAdd pb-2 is-capitalized">').text(city + ', ' + state);
               let brewWeb = $('<a class="brewLink" href='+ response[i].website_url +'>').text(response[i].website_url);
               nearBtn = $('<button class="near-button mt-3 button  has-text-centered card-footer-item">Find nearest gender-neutral bathroom!</button>');
               lat = $('<span class="lt">'+ response[i].latitude +'</span>')
               long = $('<span class="lng">'+ response[i].longitude +'</span>')
               resultContainer.append(resultDiv);
-              resultDiv.append(brewName, saveBtn,brewStreet, brewWeb, br, nearBtn, saveBtn);
+              resultDiv.append(brewName, saveBtn,brewStreet, brewWeb, nearBtn, saveBtn);
               nearBtn.append(lat, long)
               $('.lt, .lng').hide();
               console.log(response)
