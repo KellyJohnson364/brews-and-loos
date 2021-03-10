@@ -1,8 +1,7 @@
-let buttonEl = $('.button');
+let buttonEl = $('.search');
 let cityInputEl = $('.input');
 let stateInputEl = $('#state');
 let resultContainer = $('.results');
-let storageContainer = $('.fav-div');
 let city;
 let state;
 let breweries=[];
@@ -44,14 +43,14 @@ let formSubmitHandler = function (event) {
 
 buttonEl.on('click', formSubmitHandler);  
 
-// Fetch lists of safe unisex restrooms using State name and "Brew". 
+// Fetch lists of safe unisex restrooms using city and "Brew". 
 let getRestrooms = function () {
   
   restUrl = 'https://www.refugerestrooms.org/api/v1/restrooms/search?page=&per_page=100&offset=0&unisex=true&query=brew%20'+ city +''
   
     fetch(restUrl).then(answer => answer.json())
       .then(function(answer) {
-        
+
           for (i=0; i<answer.length; i++) {
               for(let k = 0; k < breweries[0].length; k++) {
                 if ((breweries[0][k].street == answer[i].street) || (breweries[0][k].name == answer[i].name)) {
@@ -84,21 +83,22 @@ let getBreweries = function () {
             });
           }
           console.log(response);
-          $('.description').remove();
+          
           breweries.push(response)  
           // console.log(breweries)
           for (let i=0; i<response.length; i++) {
             if(response[i].state == state) {
-              
+              city = city.replaceAll("%20", " ")  
               //Dynamically create divs for Brewery information
               
-              let resultDiv = $('<div class="result-div" id="result' + i + '"></div>');
-              let brewName = $('<div class="brewName">').text(response[i].name);
-              let brewStreet = $('<div class="brewStreet">').text(response[i].street);
+
+              let resultDiv = $('<div class="result-div p-5 ml-6 card" id="result' + i + '"></div>');
+              let brewName = $('<div class="brewName title">').text(response[i].name);
+              let saveBtn = $('<button class="save-button is-pulled-right button">Save this brewery</button>');
+               let brewStreet = $('<div class="brewStreet pt-2">').text(response[i].street)
+              let brewAdd =$('<div class="brewAdd pb-2 is-capitalized">').text(city + ', ' + state);
               let brewWeb = $('<a class="brewLink" href='+ response[i].website_url +'>').text(response[i].website_url);
-              let br = $('<br class="br">')
-              nearBtn = $('<button id="' + i + '" class="near-button button is-small">Find nearest gender-neutral restroom!</button>');
-              saveBtn = $('<button  class="save-button button  is-small">Save this brewery</button>');
+              nearBtn = $('<button class="near-button mt-3 button  has-text-centered card-footer-item">Find nearest gender-neutral bathroom!</button>');
               lat = $('<span class="lt">'+ response[i].latitude +'</span>')
               long = $('<span class="lng">'+ response[i].longitude +'</span>')
               resultContainer.append(resultDiv);
@@ -106,6 +106,7 @@ let getBreweries = function () {
               nearBtn.append(lat, long)
               $('.lt, .lng').hide();
               console.log(response)
+              
               if((response[i].latitude) == null) {
                 let brewTel = $('<span class="breTel">').text('Call for additional information: ' + response[i].phone + '  ')
                 nearBtn.replaceWith(brewTel)
@@ -158,12 +159,14 @@ function nearestRestroom() {
        .then(stuff => stuff.json())
        .then(function(stuff) {
          console.log(stuff)
+
           if (stuff[0] !== undefined) {
-            let nearestTitle = $('<div class="nearestTitle"></div>').text('Nearest Gender-Neutral Bathroom:');
-            let nearestName = $('<div class="nearestName"></div>').text(''+ stuff[0].name +'');
-            let nearestStreet = $('<div class="nearestStreet"></div>').text(''+ stuff[0].street +'');
+            let nearestTitle = $('<div class="nearestTitle mt-6 card-footer"></div>').text('Nearest Gender-Neutral Bathroom:');
+            let nearestName = $('<div class="nearestName mb-1 card-footer-item  subtitle"></div>').text(''+ stuff[0].name +'');
+            let nearestStreet = $('<div class="nearestStreet mx-1 p-1 card-footer-item"></div>').text(''+ stuff[0].street +'');
+            let nearestAddress  =$('<div class="nearestAddress mx-1 p-1 card-footer-item  is-capitalized"></div>').text(city + ', ' + state)
             console.log( $("#result" + index))
-            $(".btn" + classCounter).after(nearestTitle, nearestName, nearestStreet);
+            $(".btn" + classCounter).after(nearestTitle, nearestName, nearestStreet, nearestAddress);
             $(".btn" + classCounter).remove();
           }else {
             let apology = $('<div></div>').text('No unisex restrooms found in search area')
