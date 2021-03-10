@@ -13,7 +13,7 @@
 
         <header class=" hero has-text-centered">
           <div class="hero-body">
-            <h1 class="title box  mx-6 is-3">Good Brews and Neutral Loos</h1>
+            <h1 class="title box  mx-4 is-3">Good Brews & Neutral Loos</h1>
             <section class="has-text-centered box description">
               <h2 class="subtitle">Welcome to Good Brews and Neutral Loos</h2>
               <p>
@@ -27,11 +27,19 @@
 
           <main >
             <div class="columns">
-              <div class="is-two-thirds">
-                <div class=" mb-6 field is-grouped">
+              <div class="is-two-thirds-desktop">
+                <div class=" mb-6 field has-addons">
                   <div class="control">
-                    <input class="input mx-5 ml-5 " type="text" placeholder="Search a city or brewery: ">
+                    <input class="input mx-5 ml-5" type="text" placeholder="Search a city or brewery: ">
                   </div>
+
+                  <div class="control ">
+                    <a class="button search">
+                      <i class="fa fa-search"></i>
+                    </a>
+                  </div>
+
+
                   <div class="select is-multiple"> 
                     <select id="state">
 
@@ -89,11 +97,7 @@
 
                     </select>	
                   </div>			      
-                  <div class="control ">
-                    <a class="button search">
-                      <i class="fa fa-search"></i>
-                    </a>
-                  </div>
+                 
                 </div>
                 <div class="results">
                 </div>
@@ -106,10 +110,10 @@
               </div>
             </div>  
             <div class="modal selectCityState">
-              <div class="modal-card">
-                <p>Please select a city and a state.</p>
+              <div class="modal-card no-input ">
+                
                 <footer class="modal-card-foot">
-
+                <p>Please select a city and a state.</p>
                 <button class="button close">OK</button>
                 </footer>
               </div>
