@@ -31,6 +31,7 @@ let formSubmitHandler = function (event) {
       stateInputEl.val('')
       $('.result-div').remove();
       breweries=[]
+      $(".").remove();
     } else {
 
       //modal for city and state entry
@@ -102,7 +103,9 @@ let getBreweries = function () {
               lat = $('<span class="lt">'+ response[i].latitude +'</span>')
               long = $('<span class="lng">'+ response[i].longitude +'</span>')
               resultContainer.append(resultDiv);
+
               resultDiv.append(brewName, saveBtn,brewStreet, brewAdd, brewWeb, nearBtn,);
+
               nearBtn.append(lat, long)
               $('.lt, .lng').hide();
               console.log(response)
