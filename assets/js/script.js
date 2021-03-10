@@ -31,6 +31,7 @@ let formSubmitHandler = function (event) {
       stateInputEl.val('')
       $('.result-div').remove();
       breweries=[]
+      $(".").remove();
     } else {
 
       //modal for city and state entry
