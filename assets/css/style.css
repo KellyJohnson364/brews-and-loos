@@ -1,11 +1,9 @@
 html {
-    background-color: darksalmon;
+    background-color: rgb(126, 163, 145);
 }
 
 body {
-
-    background-color: rgb(126, 163, 145);
-    min-height: 100 vh;
+    min-height: 100vh;
 }
 
 .selectDiv {
@@ -27,10 +25,8 @@ body {
 }
 
 .safe-div {
-
     background-color: rgb(27, 114, 70);
     color: rgb(0, 255, 157);
-
 }
 
 .main-header {
@@ -44,6 +40,11 @@ body {
 
 .isCentered {
     text-align: center;
+}
+
+.history .result-div .near-button {
+    margin-right: auto;
+    margin-left: auto;
 }
 
 

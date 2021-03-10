@@ -82,7 +82,7 @@ let getBreweries = function () {
               location.reload();
             });
           }
-          console.log(response);
+          // console.log(response);
           
           breweries.push(response)  
           // console.log(breweries)
@@ -105,7 +105,7 @@ let getBreweries = function () {
               resultDiv.append(brewName, saveBtn,brewStreet, brewWeb, nearBtn, saveBtn);
               nearBtn.append(lat, long)
               $('.lt, .lng').hide();
-              console.log(response)
+              // console.log(response)
               
               if((response[i].latitude) == null) {
                 let brewTel = $('<span class="breTel">').text('Call for additional information: ' + response[i].phone + '  ')
@@ -126,7 +126,7 @@ let getBreweries = function () {
     brewLat =  $(this).children().first().text();
     brewLong =  $(this).children().last().text();
   
-    console.log(brewLat)
+    // console.log(brewLat)
 // this will be used to line up the rendering in nearestRestroom() with the button that was clicked 
     classCounter++
     $(this).addClass("btn" + classCounter)
@@ -139,7 +139,7 @@ let getBreweries = function () {
   history.on("click", ".near-button", function() {
     brewLat =  $(this).children().first().text();
     brewLong =  $(this).children().last().text();
-    console.log(brewLong)
+    // console.log(brewLong)
     classCounter++
     $(this).addClass("btn" + classCounter)
 
@@ -151,24 +151,24 @@ function nearestRestroom() {
 
   if (breweries[0]) {
     // if finding nearest restroom from search result, do this
-  console.log(brewLat)
+    // console.log(brewLat)
   
   nearUrl = 'https://www.refugerestrooms.org/api/v1/restrooms/by_location?page=1&per_page=1&offset=0&unisex=true&lat=' + brewLat +'&lng=' + brewLong + ''
       
    fetch(nearUrl) 
        .then(stuff => stuff.json())
        .then(function(stuff) {
-         console.log(stuff)
+        //  console.log(stuff)
 
           if (stuff[0] !== undefined) {
             let nearestTitle = $('<div class="nearestTitle mt-6 card-footer"></div>').text('Nearest Gender-Neutral Bathroom:');
             let nearestName = $('<div class="nearestName mb-1 card-footer-item  subtitle"></div>').text(''+ stuff[0].name +'');
             let nearestStreet = $('<div class="nearestStreet mx-1 p-1 card-footer-item"></div>').text(''+ stuff[0].street +'');
             let nearestAddress  =$('<div class="nearestAddress mx-1 p-1 card-footer-item  is-capitalized"></div>').text(city + ', ' + state)
-            console.log( $("#result" + index))
+            // console.log( $("#result" + index))
             $(".btn" + classCounter).after(nearestTitle, nearestName, nearestStreet, nearestAddress);
             $(".btn" + classCounter).remove();
-          }else {
+          } else {
             let apology = $('<div></div>').text('No unisex restrooms found in search area')
             nearBtn.replaceWith(apology)
           }
@@ -181,18 +181,18 @@ function nearestRestroom() {
 resultContainer.on("click", ".save-button", function() {
  
   let thisBrew = $(this).parent().html();
-  console.log(thisBrew)
-  console.log(historyStored)
+  // console.log(thisBrew)
+  // console.log(historyStored)
   if (historyStored.includes(thisBrew)) {
 
   } else if (thisBrew == undefined || thisBrew == null) {
 
   } else {
       localStorage.setItem("breweries", JSON.stringify(breweries));
-      console.log(historyStored)
+      // console.log(historyStored)
       historyStored.push(thisBrew);
       localStorage.setItem("history-info", JSON.stringify(historyStored));
-      history.append('<div class="result-div">' + thisBrew + '</div>');
+      history.append('<div class="result-div p-3 mr-6 card">' + thisBrew + '</div>');
       history.children($('#result-div')).children(".save-button").remove();
   };
 
@@ -201,7 +201,7 @@ resultContainer.on("click", ".save-button", function() {
 // renders user's recent searches to .history
 function renderHistory() {
   for (let i=0; i<historyStored.length; i++) {
-    history.append('<div class="result-div">' + historyStored[i] + '</div>');
+    history.append('<div class="result-div p-3 mr-6 card">' + historyStored[i] + '</div>');
     let historyChildren = $('.history .result-div .save-button');
     historyChildren.remove();
   };
