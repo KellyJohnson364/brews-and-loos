@@ -5,10 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Good Brews and Neutral Loos</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma-rtl.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="./assets/css/style.css" />    
     </head>
 
     <body>
+
         <header class=" hero has-text-centered">
           <div class="hero-body">
             <h1 class="title box  mx-6 is-1">Good Brews and Neutral Loos</h1>
@@ -33,12 +35,13 @@
                   </div>
                   <div class="select is-multiple"> 
                     <select id="state">
+
                       <option value="">Select a State</option>
                       <option value="AL">Alabama</option>
                       <option value="AK">Alaska</option>
                       <option value="AZ">Arizona</option>
                       <option value="AR">Arkansas</option>
-                      <option value="CA">California</option>
+                      <option value="CA">California</option> 
                       <option value="CO">Colorado</option>
                       <option value="CT">Connecticut</option>
                       <option value="DE">Delaware</option>
@@ -84,7 +87,7 @@
                       <option value="WA">Washington</option>
                       <option value="WV">West Virginia</option>
                       <option value="WI">Wisconsin</option>
-                      <option value="WY">Wyoming</option>
+
                     </select>	
                   </div>			      
                   <div class="control">
@@ -107,6 +110,7 @@
               <div class="modal-card">
                 <p>Please select a city and a state.</p>
                 <footer class="modal-card-foot">
+
                 <button class="button close">OK</button>
                 </footer>
               </div>
@@ -124,6 +128,21 @@
               
             
           
+
+          <div class=" column results is-two-thirds">
+
+            <section class="container has-text-white description">
+              <h1 class="title has-text-white is-5">Welcome to Good Brews and Neutral Loos</h1>
+              <p>
+                We all love breweries, but we love breweries with gender-neutral bathrooms even more! To see a list of breweries in a city, search for the city above. If a brewery has a gender-neutral bathroom (and if the brewery has made this info available online), we'll tell you in the search results. If not, click the button to see the closest gender-neutral bathroom to the brewery.
+              </p>
+            </section>
+
+          </div>
+          <div class="columm fav-div is-one-third history has-text-white">
+            <h2 class="title is-5 has-text-white">Saved Breweries</h2>
+            <button class="delete-btn button is-warning">Delete history</button>
+          </div>
         </main>
         
         <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>

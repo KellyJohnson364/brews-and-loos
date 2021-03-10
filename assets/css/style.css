@@ -1,8 +1,11 @@
 
-
 body {
+
     background-color: rgb(126, 163, 145);
+    min-height: 100 vh;
 }
+
+
 
 .result-div {
     border: 2px solid rgb(110, 110, 110);
@@ -10,6 +13,28 @@ body {
 }
 
 .safe-div {
+
     background-color: rgb(27, 114, 70);
     color: rgb(0, 255, 157);
+
+}
+
+ .main-header {
+    padding-left: 20px;
+    padding-top: 20px;
+
+}
+
+@media only screen and (max-width: 400px) {
+    .search-box {
+        
+       
+        flex-direction: row;
+        
+    }
+    .button-icon {
+        width: 100%;
+        
+        
+    }
 }
