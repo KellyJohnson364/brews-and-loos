@@ -9,9 +9,7 @@ let breweries=[];
 let index;
 let nearBtn;
 let history = $('.history');
-let temp = localStorage.getItem("history-info");
-console.log(temp);
-let historyStored = JSON.parse(temp) || [];
+let historyStored = JSON.parse(localStorage.getItem("history-info")) || [];
 
 
 // Collect city and state information from form submission
@@ -173,13 +171,15 @@ resultContainer.on("click", ".save-button", function() {
 function renderHistory() {
   for (let i=0; i<historyStored.length; i++) {
     history.append('<div class="result-div">' + historyStored[i] + '</div>');
-    $('.save-button').remove();
-  }
+    let historyChildren = $('.history .result-div .save-button');
+    historyChildren.remove();
+  };
 };
 renderHistory();
 
 // event handler for deleting history
 history.on("click", ".delete-btn", function() {
+  historyStored = [];
   localStorage.setItem("history-info", JSON.stringify([]));
   localStorage.setItem("breweries", JSON.stringify([]));
   history.children(".result-div").remove();
