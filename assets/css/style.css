@@ -1,37 +1,71 @@
+html {
+    background-color: darksalmon;
+}
 
 body {
-    background-color: darksalmon;
     min-height: 100 vh;
 }
 
+.selectDiv {
+    margin-bottom: .75rem;
+}
 
+.button-icon {
+    margin-bottom: .75rem;
+}
 
 .result-div {
     border: 2px solid rgb(110, 110, 110);
     margin: 10px;
 }
 
+.brewName {
+    font-weight: 500;
+    font-size: 1.25rem;
+}
+
 .safe-div {
     background-color: green;
-    color: aqua;
+    color: white;
 }
 
- .main-header {
+.main-header {
     padding-left: 20px;
     padding-top: 20px;
-
 }
 
-@media only screen and (max-width: 400px) {
+.savedTitle {
+    text-align: center;
+}
+
+.isCentered {
+    text-align: center;
+}
+
+
+@media only screen and (max-width: 500px) {
     .search-box {
-        
-       
         flex-direction: row;
-        
-    }
-    .button-icon {
         width: 100%;
-        
-        
+    }
+
+    .searchDiv {
+        width: 100%;
+    }
+
+    .searchInput {
+        padding-left: 40px;
+    }
+
+    .selectDiv {
+        width: 100%;
+    }
+
+    #state {
+        width: 100%;
+    }
+
+    .button-icon {
+        width: 100%;   
     }
 }

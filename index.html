@@ -13,17 +13,11 @@
         <header class="has-text-white level ">
             <h1 class="title is-1 has-text-white">Good Brews and Neutral Loos</h1>
             <div class="field has-addons is-medium level-right is-align-items-center search-box">
-                <div class="control">
-                  <input class="input" type="text" placeholder="Search a city: ">
-                </div>
-                
-                <div class="control">
-                  <a class="button container is-warning button-icon">
-                    <i class="fa fa-search"></i>
-                  </a>
+                <div class="control searchDiv">
+                  <input class="input searchInput" type="text" placeholder="Search a city: ">
                 </div>
             </div>
-                <div class="select is-multiple "> 
+                <div class="select is-multiple selectDiv"> 
                   <select id="state" >
                       <option value="">Select a State</option>
                       <option value="AL">Alabama</option>
@@ -78,11 +72,12 @@
                       <option value="WI">Wisconsin</option>
                       <option value="WY">Wyoming</option>
                     </select>				
-                       
-               
-                
-              </div>
-         </nav>
+                  </div>
+                  <div class="control">
+                    <a class="button container is-warning button-icon">
+                      <i class="fa fa-search"></i>
+                    </a>
+                  </div>
 
         </header>
 
@@ -115,9 +110,11 @@
             </section>
 
           </div>
-          <div class="columm fav-div is-one-third history has-text-white">
-            <h2 class="title is-5 has-text-white">Saved Breweries</h2>
-            <button class="delete-btn button is-warning">Delete history</button>
+          <div class="columm fav-div is-one-third has-text-white history">
+            <h2 class="title is-5 has-text-white savedTitle">Saved Breweries</h2>
+            <div class="isCentered">
+              <button class="button is-warning delete-btn">Delete history</button>
+            </div>
           </div>
         </main>
         
