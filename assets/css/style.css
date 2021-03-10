@@ -22,3 +22,16 @@ body {
 
 }
 
+@media only screen and (max-width: 400px) {
+    .search-box {
+        
+       
+        flex-direction: row;
+        
+    }
+    .button-icon {
+        width: 100%;
+        
+        
+    }
+}
