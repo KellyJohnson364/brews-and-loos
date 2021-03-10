@@ -9,14 +9,9 @@ let breweries=[];
 let index;
 let nearBtn;
 let history = $('.history');
-let historyStored = [];
-
-if (localStorage.getItem("history-info") === null || localStorage.getItem("history-info") === undefined) {
-
-} else {
-  historyStored = JSON.parse(localStorage.getItem("history-info")) || [];
-};
-
+let temp = localStorage.getItem("history-info");
+console.log(temp);
+let historyStored = JSON.parse(temp) || [];
 
 
 // Collect city and state information from form submission
@@ -185,7 +180,7 @@ renderHistory();
 
 // event handler for deleting history
 history.on("click", ".delete-btn", function() {
-  localStorage.setItem("history-info", []);
-  localStorage.setItem("breweries", []);
+  localStorage.setItem("history-info", JSON.stringify([]));
+  localStorage.setItem("breweries", JSON.stringify([]));
   history.children(".result-div").remove();
 })
