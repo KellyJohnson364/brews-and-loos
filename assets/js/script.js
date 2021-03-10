@@ -30,9 +30,9 @@ let formSubmitHandler = function (event) {
       breweries=[]
     } else {
      
-      $(".modal").addClass("is-active")
+      $(".selectCityState").addClass("is-active")
       $(".close").click(function() {
-         $(".modal").removeClass("is-active");
+         $(".selectCityState").removeClass("is-active");
       });
     }
 }
@@ -71,6 +71,15 @@ let getBreweries = function () {
     fetch(brewUrl)
         .then(response => response.json())
         .then(function(response) {
+          // in cases where there's no response
+          if (response.length == 0) {
+            $(".noResponse").addClass("is-active")
+            $(".close").click(function() {
+              $(".noResponse").removeClass("is-active");
+              location.reload();
+            });
+          }
+          console.log(response);
           $('.description').remove();
           breweries.push(response)  
           // console.log(breweries)
