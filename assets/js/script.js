@@ -71,7 +71,7 @@ let getBreweries = function () {
     fetch(brewUrl)
         .then(response => response.json())
         .then(function(response) {
-             
+          $('.description').remove();
           breweries.push(response)  
           // console.log(breweries)
           for (let i=0; i<response.length; i++) {
@@ -147,9 +147,8 @@ function nearestRestroom() {
   $(".btn" + classCounter).after(nearestTitle, nearestName, nearestStreet);
   $(".btn" + classCounter).remove();
 })
-}
+};
 
-// TODO event handler 
 // delegated event handler for saving brewery/bathroom info 
 resultContainer.on("click", ".save-button", function() {
   let thisBrew = $(this).parent().html();

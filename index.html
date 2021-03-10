@@ -3,18 +3,17 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Welcome to Brews and Loos!</title>
+        <title>Good Brews and Neutral Loos</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma-rtl.min.css">
         <link rel="stylesheet" href="./assets/css/style.css" />    
     </head>
 
     <body>
-        <header class="container is-primary" role="navigation" aria-label="main navigation">
-            <h1 class="main-header title has-text-white is-offset">Brews and Loos</h1>
-         <nav class=" is-max-mobile">
-            <div class="field has-addons nav-box">
-                <div class="control search-box">
-                  <input class="input is-medium search-button" type="text" placeholder="Search a city: ">
+        <header>
+            <h1 class="title is-1">Good Brews and Neutral Loos</h1>
+            <div class="field has-addons">
+                <div class="control is-medium">
+                  <input class="input" type="text" placeholder="Search a city: ">
                 </div>
                 
                 <div class="control search-button">
@@ -86,7 +85,9 @@
 
         </header>
 
-        <main class="">
+        <main>
+
+          
           
           <div class="modal">
              <p>Please select a city and a state.</p>
@@ -95,7 +96,16 @@
               </footer>
           </div>
           
-          <div class=" column results is-two-thirds"></div>
+          <div class=" column results is-two-thirds">
+
+            <section class="container description">
+              <h1 class="title is-5">Welcome to Good Brews and Neutral Loos</h1>
+              <p>
+                We all love breweries, but we love breweries with gender-neutral bathrooms even more! To see a list of breweries in a city, search for the city above. If a brewery has a gender-neutral bathroom (and if the brewery has made this info available online), we'll tell you in the search results. If not, click the button to see the closest gender-neutral bathroom to the brewery.
+              </p>
+            </section>
+
+          </div>
           <div class="columm fav-div is-one-third history">
             <h2>Saved Breweries</h2>
             <button class="delete-btn">Delete history</button>
