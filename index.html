@@ -88,15 +88,41 @@
             </select>
           </div>
 
+
           <div class="control">
             <a class="button search is-info">Search</a>
           </div>
+
+        <header class=" hero has-text-centered">
+          <div class="hero-body">
+            <h1 class="title box  mx-6 is-3">Good Brews and Neutral Loos</h1>
+            <section class="has-text-centered box description">
+              <h2 class="subtitle">Welcome to Good Brews and Neutral Loos</h2>
+              <p>
+                We all love breweries, but we love breweries with gender-neutral bathrooms even more! Search your city or favorite brewery. Breweries with positive gender-neutral restroom ratings will be indicated in your search results. 
+                If gender-neutral restrooms are not available or have not yet been rated, the "Find nearest restroom" button will display the closest positively rated gender-neutral restroom for each brewery.  
+              </p>
+            </section>
+          </div>  
+        </header>
 
         </div>
           
         <div class="results"></div>
 
+
       </div>
+      
+          <main >
+            <div class="columns">
+              <div class="is-two-thirds">
+                <div class=" mb-6 field is-grouped">
+                  <div class="control">
+                    <input class="input mx-5 ml-5 " type="text" placeholder="Search a city or brewery: ">
+                  </div>
+                  <div class="select is-multiple"> 
+                    <select id="state">
+
 
       <div class="column has-text-centered">
           <h2 class="title">Saved Breweries</h2>
@@ -104,6 +130,7 @@
             <button class="delete-btn button">Delete history</button>
           </div>
       </div>
+
 
     </div>
 
@@ -126,6 +153,43 @@
     </div>
 
   </main>
+                    </select>	
+                  </div>			      
+                  <div class="control ">
+                    <a class="button search">
+                      <i class="fa fa-search"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="results">
+                </div>
+              </div>
+              <div class="column has-text-centered">
+                <h2 class="title has-text-white">Saved Breweries</h2>
+                <div class="history">
+                  <button class="delete-btn button"><i class="fa fa-trash-o" style="font-size:24px"></i> </button>
+                </div>
+              </div>
+            </div>  
+            <div class="modal selectCityState">
+              <div class="modal-card-foot">
+                <p>Please select a city and a state.</p>
+                <footer class="modal-card-foot">
+
+                <button class="button close">OK</button>
+                </footer>
+              </div>
+            </div>
+            <div class="modal noResponse">
+              <p>Whoops!</p>
+              <br>
+              <p>We didn't recognize that. Please check your spelling and try again.</p>
+               <footer class="modal-card-foot">
+               <button class="button close">OK</button>
+              </footer>
+            </div>
+
+        </main>
         
 <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
 <script src="./assets/js/script.js"></script>

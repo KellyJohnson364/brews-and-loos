@@ -31,6 +31,7 @@ let formSubmitHandler = function (event) {
       stateInputEl.val('')
       $('.result-div').remove();
       breweries=[]
+      $(".").remove();
     } else {
 
       //modal for city and state entry
@@ -102,15 +103,20 @@ let getBreweries = function () {
               lat = $('<span class="lt">'+ response[i].latitude +'</span>')
               long = $('<span class="lng">'+ response[i].longitude +'</span>')
               resultContainer.append(resultDiv);
-              resultDiv.append(brewName, saveBtn,brewStreet, brewWeb, nearBtn, saveBtn);
+
+              resultDiv.append(brewName, saveBtn,brewStreet, brewAdd, brewWeb, nearBtn,);
+
               nearBtn.append(lat, long)
               $('.lt, .lng').hide();
               // console.log(response)
               
               if((response[i].latitude) == null) {
-                let brewTel = $('<span class="breTel">').text('Call for additional information: ' + response[i].phone + '  ')
+                let brewTel = $('<div class="brewTel">').text('For additional information, call: ' + response[i].phone + '  ')
+                if (response[i].phone) {
                 nearBtn.replaceWith(brewTel)
-
+                } else {
+                  nearBtn.remove()
+                }
               }
             }
             }    
@@ -166,6 +172,7 @@ function nearestRestroom() {
             let nearestStreet = $('<div class="nearestStreet mx-1 p-1 card-footer-item"></div>').text(''+ stuff[0].street +'');
             let nearestAddress  =$('<div class="nearestAddress mx-1 p-1 card-footer-item  is-capitalized"></div>').text(city + ', ' + state)
             // console.log( $("#result" + index))
+
             $(".btn" + classCounter).after(nearestTitle, nearestName, nearestStreet, nearestAddress);
             $(".btn" + classCounter).remove();
           } else {
