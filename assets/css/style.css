@@ -48,8 +48,16 @@ body {
 }
 
 
+
+.no-input {
+    background-color: aqua;
+    width: 35%;
+}
+
+
 @media only screen and (max-width: 500px) {
     .search-box {
+        display: flex;
         flex-direction: row;
         width: 100%;
     }
