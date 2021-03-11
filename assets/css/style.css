@@ -6,6 +6,8 @@ body {
     min-height: 100vh;
 }
 
+
+
 .selectDiv {
     margin-bottom: .75rem;
 }
@@ -47,7 +49,10 @@ body {
     margin-left: auto;
 }
 
-
+.description {
+    width: 70%;
+    margin: 0 auto;
+}
 
 .no-input {
     background-color: aqua;
