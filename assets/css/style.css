@@ -6,14 +6,42 @@ body {
     min-height: 100vh;
 }
 
+.siteTitle {
+    font-size: 3rem !important;
+}
 
+.searchDiv {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 3rem;
+}
+
+.search-box {
+    margin-left: 3rem;
+}
 
 .selectDiv {
     margin-bottom: .75rem;
 }
 
-.button-icon {
-    margin-bottom: .75rem;
+.stateDiv {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin-left: 35px !important;
+}
+
+#state {
+    margin-top: -.75rem;
+}
+
+.searchBtn {
+    margin-top: -.75rem;
+}
+
+.description {
+    width: 70%;
+    margin: 0 auto;
 }
 
 .result-div {
@@ -36,54 +64,186 @@ body {
     padding-top: 20px;
 }
 
+.resultsAndHistory {
+    border-top: 3px solid white;
+    margin-top: 10px;
+    padding-top: 10px;
+    background-color: white;
+    width: 100%;
+    margin-right: 0;
+    margin-left: 0
+}
+
 .savedTitle {
     text-align: center;
+    color: black;
 }
 
-.isCentered {
+.result-div {
+    background-color: rgb(126, 163, 145);
+    color: white;
+}
+
+.result-div .brewName {
+    color: white;
+}
+
+/* .result-div a {
+    color: #314039;
+} */
+
+.result-div .nearestName {
+    color: white;
+    font-weight: 600;
+    border-left: none;
+    padding-bottom: 0;
+}
+
+.result-div .nearestStreet {
+    border-left: none;
+}
+
+.titleAndButton {
+    margin-right: 3rem;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.delete-btn {
+    margin-left: auto;
+}
+
+.history .result-div {
+    overflow: hidden;
+}
+
+.save-button {
+    margin-bottom: 10px;
+}
+
+.near-button {
+    margin-right: auto;
+    margin-left: auto;
+    word-wrap: normal;
+    white-space: normal;
+    height: auto;
+}
+
+.no-input {
+    width: 35%;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
+
+.no-input footer {
+    background-color:rgb(110, 110, 110);
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.no-input footer p {
     text-align: center;
+    margin-bottom: 15px;
 }
 
-.history .result-div .near-button {
+.noResponse {
+    width: 35%;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
     margin-right: auto;
     margin-left: auto;
 }
 
-.description {
-    width: 70%;
-    margin: 0 auto;
+.noResponse footer {
+    background-color:rgb(110, 110, 110);
+    color: white;
+    display: flex;
+    flex-direction: column;
 }
 
-.no-input {
-    background-color: aqua;
-    width: 35%;
+.noResponse footer p {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+@media only screen and (max-width: 768px) {
+    .results .result-div {
+        margin-left: 0 !important;
+        margin-left: 10px !important;
+    }
+
+    .history .result-div {
+        margin-right: 0 !important;
+        margin-right: 10px !important;
+    }
 }
 
 
 @media only screen and (max-width: 500px) {
-    .search-box {
-        display: flex;
-        flex-direction: row;
-        width: 100%;
+    .siteTitle {
+        font-size: inherit !important;
     }
 
     .searchDiv {
+        flex-direction: column;
+        width: 80%;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .stateDiv {
+        flex-direction: column;
+        width: 100%;
+        padding: 0 !important;
+        margin-left: 0 !important;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    /* !wtf! */
+    .search-box-div {
         width: 100%;
     }
 
-    .searchInput {
-        padding-left: 40px;
+    .search-control {
+        margin-right:auto;
+        margin-left: auto;
+        width: 100%;
+        overflow: hidden;
     }
 
-    .selectDiv {
+    .search-box {
+        margin-left: 0;
         width: 100%;
     }
 
     #state {
+        margin-top: 0;
+    }
+
+    .searchBtn {
+        margin-top: .75rem;
         width: 100%;
     }
 
-    .button-icon {
-        width: 100%;   
+    .searchBtn a {
+        width: 100%;
+    }
+
+    .description {
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .results .result-div {
+        margin-left: 0 !important;
+        margin-left: 10px !important;
+    }
+
+    .history .result-div {
+        margin-right: 0 !important;
+        margin-right: 10px !important;
     }
 }
