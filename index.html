@@ -11,25 +11,16 @@
 <body>
   <header class=" hero has-text-centered">
     <div class="hero-body">
-      <h1 class="title box mx-5 is-4">Good Brews & Neutral Loos</h1>
-     
+      <h1 class="title box mx-5 is-4 siteTitle">Good Brews & Neutral Loos</h1>
     </div>
 
-
-    <div class="columns">
-      <div class="column is-full-mobile">
-        <div class=" field has-addons search-box ">
-          <div class="control">
-            <input class="input mx-6 px-2" type="text" placeholder="Search a city or brewery: ">
-          </div>
-          
-          <div class="control">
-            <a class="button search">
-              <i class="fa fa-search"></i>
-            </a>
+      <div class="searchDiv">
+        <div class=" field has-addons search-box-div">
+          <div class="control search-control">
+            <input class="input px-2 search-box" type="text" placeholder="Search a city or brewery: ">
           </div>
         </div>
-          <div class="select mx-6 is-multiple column ">
+          <div class="select mx-6 is-multiple column stateDiv">
               <select id="state">
                   <option value="">Select a State</option>
                   <option value="AL">Alabama</option>
@@ -82,14 +73,21 @@
                   <option value="WA">Washington</option>
                   <option value="WV">West Virginia</option>
                   <option value="WI">Wisconsin</option>
-                </select>
-            </div>
+              </select>
+              <div class="control searchBtn">
+                <a class="button search">
+                  <i class="fa fa-search"></i>
+                </a>
+              </div>
+          </div>
+      </div>
+            
 
   </header>
 
   <main>
             
-        <section class="has-text-centered box description hero-body">
+        <section class="has-text-centered box hero-body description">
            <h2 class="subtitle">Welcome to Good Brews and Neutral Loos</h2>
            <p>
               We all love breweries, but we love breweries with gender-neutral bathrooms even more! Search your city or
@@ -100,34 +98,36 @@
           </p>
         </section>
             
-        
-                <div class="results">
-                </div>
-              </div>
-              <div class="column has-text-centered">
-                <h2 class="title has-text-white">Saved Breweries</h2>
-                <div class="history">
-                  <button class="delete-btn button"><i class="fa fa-trash-o" style="font-size:24px"></i> </button>
-                </div>
-              </div>
-            </div>  
-            <div class="modal selectCityState">
+        <!-- This is div contains search results and history -->
+        <div class="columns resultsAndHistory">
+          <div class="column is-two-thirds-tablet results"></div>     
+          <div class="column has-text-centered is-one-third-tablet historySection">
+            <div class="titleAndButton">
+              <h2 class="title savedTitle">Saved Breweries</h2>
+              <button class="delete-btn button"><i class="fa fa-trash-o" style="font-size:24px"></i> </button>
+            </div>
+            <div class="history"></div>
+          </div>
+        </div>
+                
+        <!-- This is the modal users see if they don't fulfill search requirements -->
+        <div class="modal selectCityState">
+          <div class="modal-card no-input ">
+            <footer class="modal-card-foot">
+              <p>Please select a city and a state.</p>
+              <button class="button close">OK</button>
+            </footer>
+          </div>
+        </div>
 
-              <div class="modal-card no-input ">
-                <footer class="modal-card-foot">
-                <p>Please select a city and a state.</p>
-                <button class="button close">OK</button>
-                </footer>
-              </div>
-            </div>
-            <div class="modal noResponse">
-              <p>Whoops!</p>
-              <br>
-              <p>We didn't recognize that. Please check your spelling and try again.</p>
-               <footer class="modal-card-foot">
-               <button class="button close">OK</button>
-              </footer>
-            </div>
+        <!-- This is the modal users see if their search returns no responses -->
+        <div class="modal noResponse">
+          <footer class="modal-card-foot">
+            <p>Whoops!</p>
+          <p>We didn't recognize that. Please check your spelling and try again.</p>
+            <button class="button close">OK</button>
+          </footer>
+        </div>
 
   </main>
         

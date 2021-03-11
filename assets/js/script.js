@@ -14,6 +14,14 @@ let nearBtn;
 let history = $('.history');
 let historyStored = JSON.parse(localStorage.getItem("history-info")) || [];
 
+// removes description if you've visited the site before 
+//TODO should maybe create a button that will reveal the description if the user wants it 
+// if (localStorage.getItem("veteran")) {
+//   $('.description').remove();
+// } else {
+//   localStorage.setItem("veteran", true);
+// }
+
 
 // Collect city and state information from form submission
 let formSubmitHandler = function (event) {
@@ -31,7 +39,7 @@ let formSubmitHandler = function (event) {
       stateInputEl.val('')
       $('.result-div').remove();
       breweries=[]
-      $(".").remove();
+      $(".description").remove();
     } else {
 
       //modal for city and state entry
@@ -98,13 +106,19 @@ let getBreweries = function () {
               let saveBtn = $('<button class="save-button is-pulled-right button">Save this brewery</button>');
               let brewStreet = $('<div class="brewStreet pt-2">').text(response[i].street)
               let brewAdd =$('<div class="brewAdd pb-2 is-capitalized">').text(city + ', ' + state);
-              let brewWeb = $('<a class="brewLink" href='+ response[i].website_url +'>').text(response[i].website_url);
-              nearBtn = $('<button class="near-button mt-3 button  has-text-centered card-footer-item">Find nearest gender-neutral bathroom!</button>');
+              let brewWeb = $('<a class="brewLink" href='+ response[i].website_url +'>Click to visit website</a>');
+              nearBtn = $('<button class="mt-3 button  has-text-centered card-footer-item near-button">Find nearest gender-neutral bathroom!</button>');
               lat = $('<span class="lt">'+ response[i].latitude +'</span>')
               long = $('<span class="lng">'+ response[i].longitude +'</span>')
               resultContainer.append(resultDiv);
 
-              resultDiv.append(brewName, saveBtn,brewStreet, brewAdd, brewWeb, nearBtn,);
+              resultDiv.append(saveBtn, brewName, brewStreet, brewAdd, brewWeb, nearBtn,);
+
+              // fixes issue with save button styling on mobile viewports
+              let mobileSize = window.matchMedia('(max-width: 500px)');
+              if (mobileSize.matches) {
+                $('.save-button').removeClass('is-pulled-right')
+              }
 
               nearBtn.append(lat, long)
               $('.lt, .lng').hide();
@@ -155,9 +169,9 @@ let getBreweries = function () {
 // function for fetching nearest gender-neutral bathroom info 
 function nearestRestroom() {
 
-  if (breweries[0]) {
-    // if finding nearest restroom from search result, do this
-    // console.log(brewLat)
+  //! I commented out the if statement to fix a bug where refreshing the page wouldn't allow you to click "nearest" 
+  //! button and fetch because breweries is an empty array 
+  // if (breweries[0]) {
   
   nearUrl = 'https://www.refugerestrooms.org/api/v1/restrooms/by_location?page=1&per_page=1&offset=0&unisex=true&lat=' + brewLat +'&lng=' + brewLong + ''
       
@@ -167,10 +181,10 @@ function nearestRestroom() {
         //  console.log(stuff)
 
           if (stuff[0] !== undefined) {
-            let nearestTitle = $('<div class="nearestTitle mt-6 card-footer"></div>').text('Nearest Gender-Neutral Bathroom:');
-            let nearestName = $('<div class="nearestName mb-1 card-footer-item  subtitle"></div>').text(''+ stuff[0].name +'');
-            let nearestStreet = $('<div class="nearestStreet mx-1 p-1 card-footer-item"></div>').text(''+ stuff[0].street +'');
-            let nearestAddress  =$('<div class="nearestAddress mx-1 p-1 card-footer-item  is-capitalized"></div>').text(city + ', ' + state)
+            let nearestTitle = $('<div class="mt-6 card-footer nearestTitle"></div>').text('Nearest Gender-Neutral Bathroom:');
+            let nearestName = $('<div class="mb-1 card-footer-item  subtitle nearestName"></div>').text(''+ stuff[0].name +'');
+            let nearestStreet = $('<div class="nearestStreet mx-1 p-1 card-footer-item nearestStreet"></div>').text(''+ stuff[0].street +'');
+            let nearestAddress  =$('<div class="mx-1 p-1 card-footer-item  is-capitalized nearestAddress"></div>').text(city + ', ' + state)
             // console.log( $("#result" + index))
 
             $(".btn" + classCounter).after(nearestTitle, nearestName, nearestStreet, nearestAddress);
@@ -181,7 +195,7 @@ function nearestRestroom() {
           }
 
         })
-  }
+  // }
 };
 
 // delegated event handler for saving brewery/bathroom info 
@@ -216,9 +230,15 @@ function renderHistory() {
 renderHistory();
 
 // event handler for deleting history
-history.on("click", ".delete-btn", function() {
+$(".resultsAndHistory").on("click", ".delete-btn", function() {
   historyStored = [];
   localStorage.setItem("history-info", JSON.stringify([]));
   localStorage.setItem("breweries", JSON.stringify([]));
   history.children(".result-div").remove();
 })
+
+// media queries 
+let mobileSize = window.matchMedia('(max-width: 500px)');
+if (mobileSize.matches) {
+  $('.save-button').removeClass('is-pulled-right')
+}
