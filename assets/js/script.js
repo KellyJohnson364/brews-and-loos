@@ -1,4 +1,4 @@
-let searchEl = $('.searchBtn');
+let searchEl = $('.search');
 let cityInputEl = $('.input');
 let stateInputEl = $('#state');
 let resultContainer = $('.results');
@@ -15,7 +15,7 @@ let history = $('.history');
 let historyStored = JSON.parse(localStorage.getItem("history-info")) || [];
 
 // Collect city and state information from form submission
-searchEl.on("click", ".search", function() { 
+searchEl.on("click", ".searchBtn", function() { 
    
     state = $('#state option:selected').text();  
     city = cityInputEl.val();
@@ -181,7 +181,7 @@ function nearestRestroom() {
             $(".btn" + classCounter).remove();
           } else {
             let apology = $('<div></div>').text('No unisex restrooms found in search area')
-            nearBtn.replaceWith(apology)
+            $('.btn' + classCounter).replaceWith(apology);
           }
 
         })
