@@ -180,6 +180,20 @@ select {
     margin-bottom: 15px;
 }
 
+.navbar {
+    min-height: unset !important;
+    height:40px;
+   
+}
+
+.navbar-end {
+    margin-left: 400px
+}
+
+.navbar-start {
+    margin-right: 175px;
+}
+
 @media only screen and (max-width: 768px) {
     .results .result-div {
         margin-left: 0 !important;
@@ -258,4 +272,16 @@ select {
         margin-right: 0 !important;
         margin-right: 10px !important;
     }
+
+    .navbar-end {
+      margin-left: 0px;
+     
+    }
+
+    .navbar-start {
+        margin-right: 0px;
+    }
+   
+
 }
+

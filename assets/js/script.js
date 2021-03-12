@@ -120,7 +120,7 @@ let getBreweries = function () {
               // console.log(response)
               
               if((response[i].latitude) == null) {
-                let brewTel = $('<div class="brewTel">').text('For additional information, call: ' + response[i].phone + '  ')
+                let brewTel = $('<div class="brewTel">').text('For additional information, call: ' + response[i].phone)
                 if (response[i].phone) {
                 nearBtn.replaceWith(brewTel)
                 } else {
@@ -168,13 +168,13 @@ function nearestRestroom() {
    fetch(nearUrl) 
        .then(stuff => stuff.json())
        .then(function(stuff) {
-        //  console.log(stuff)
+         //console.log(stuff)
 
           if (stuff[0] !== undefined) {
             let nearestTitle = $('<div class="mt-6 card-footer nearestTitle"></div>').text('Nearest Gender-Neutral Restroom:');
-            let nearestName = $('<div class="mb-1 card-footer-item  subtitle nearestName"></div>').text(''+ stuff[0].name +'');
-            let nearestStreet = $('<div class="nearestStreet mx-1 p-1 card-footer-item nearestStreet"></div>').text(''+ stuff[0].street +'');
-            let nearestAddress  =$('<div class="mx-1 p-1 card-footer-item  is-capitalized nearestAddress"></div>').text(city + ', ' + state)
+            let nearestName = $('<div class="mb-1 card-footer-item  subtitle nearestName"></div>').text(stuff[0].name);
+            let nearestStreet = $('<div class="nearestStreet mx-1 p-1 card-footer-item nearestStreet"></div>').text(stuff[0].street);
+            let nearestAddress  =$('<div class="mx-1 p-1 card-footer-item  is-capitalized nearestAddress"></div>').text(stuff[0].city + ', '+ stuff[0].state)
             // console.log( $("#result" + index))
 
             $(".btn" + classCounter).after(nearestTitle, nearestName, nearestStreet, nearestAddress);
@@ -189,7 +189,7 @@ function nearestRestroom() {
 
 // delegated event handler for saving brewery/bathroom info 
 resultContainer.on("click", ".save-button", function() {
- 
+  $(this).text("Saved ✅")
   let thisBrew = $(this).parent().html();
   // console.log(thisBrew)
   // console.log(historyStored)
@@ -224,6 +224,7 @@ $(".resultsAndHistory").on("click", ".delete-btn", function() {
   localStorage.setItem("history-info", JSON.stringify([]));
   localStorage.setItem("breweries", JSON.stringify([]));
   history.children(".result-div").remove();
+  $(".save-button").text("Save this brewery");
 })
 
 // media queries 
