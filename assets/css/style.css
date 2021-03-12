@@ -6,8 +6,16 @@ body {
     min-height: 100vh;
 }
 
+.titleDiv {
+    margin-right: auto;
+    margin-left: auto;
+}
+
 .siteTitle {
     font-size: 3rem !important;
+    max-width: 60%;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
 }
 
 .searchDiv {
@@ -56,7 +64,7 @@ body {
 
 .safe-div {
     background-color: rgb(27, 114, 70);
-    color: rgb(0, 255, 157);
+    text-align: center;
 }
 
 .main-header {
@@ -183,7 +191,8 @@ body {
 
 @media only screen and (max-width: 500px) {
     .siteTitle {
-        font-size: inherit !important;
+        font-size: 2rem !important;
+        border-radius: 0;
     }
 
     .searchDiv {
@@ -202,7 +211,6 @@ body {
         margin-left: auto;
     }
 
-    /* !wtf! */
     .search-box-div {
         width: 100%;
     }
