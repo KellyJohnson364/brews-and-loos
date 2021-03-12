@@ -1,4 +1,4 @@
-let buttonEl = $('.search');
+let searchEl = $('.searchBtn');
 let cityInputEl = $('.input');
 let stateInputEl = $('#state');
 let resultContainer = $('.results');
@@ -15,8 +15,8 @@ let history = $('.history');
 let historyStored = JSON.parse(localStorage.getItem("history-info")) || [];
 
 // Collect city and state information from form submission
-let formSubmitHandler = function (event) {
-    event.preventDefault();
+searchEl.on("click", ".search", function() { 
+   
     state = $('#state option:selected').text();  
     city = cityInputEl.val();
 
@@ -39,9 +39,9 @@ let formSubmitHandler = function (event) {
          $(".selectCityState").removeClass("is-active");
       });
     }
-}
+})
 
-buttonEl.on('click', formSubmitHandler);  
+ 
 
 // Fetch lists of safe unisex restrooms using city and "Brew". 
 let getRestrooms = function () {
