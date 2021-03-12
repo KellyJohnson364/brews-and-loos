@@ -1,7 +1,3 @@
-<!-- TODO move search bar to right side of window for tablet/desktop viewers -->
-<!-- TODO border radius for positively rated restrooms  -->
-<!-- TODO something to indicate to user that save was successful -->
-
 # Good Brews and Neutral Loos
 
 ## Description
@@ -28,8 +24,12 @@ To visit this website, simply follow this [link](https://rflctveq.github.io/brew
 # Screenshots
 Here's two images of the application being run on a desktop-sized viewport: 
 
-![desktop-ss](assets/images/desktop-ss.png)
+![desktop-ss](assets/images/desktop-ss-desc.png)
 
-And here's an image of the application being run on a viewport the size of an iPhone X:
+![desktop-ss](assets/images/desktop-ss-search.png)
 
-![mobile-ss](assets/images/mobile-ss.png)
+And here's two images of the application being run on a viewport the size of an iPhone X:
+
+![mobile-ss](assets/images/mobile-ss-desc.png)
+
+![mobile-ss](assets/images/mobile-ss-search.png)
