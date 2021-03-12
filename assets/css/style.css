@@ -37,6 +37,7 @@ body {
     flex-direction: row;
     flex-wrap: nowrap;
     margin-left: 35px !important;
+    text-rendering: auto !important; 
 }
 
 #state {
