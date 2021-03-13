@@ -21,6 +21,15 @@ To visit this website, simply follow this [link](https://rflctveq.github.io/brew
 ### Ian Everitt 
 * [Ian's GitHUb](https://github.com/rflctvEQ)
 
+# Technology Used
+* Brewery DB API
+
+* REFUGE Restrooms REST API 
+
+* Bulma CSS Framework
+
+* jQuery
+
 # Screenshots
 Here's two images of the application being run on a desktop-sized viewport: 
 
