@@ -33,11 +33,11 @@ To visit this website, simply follow this [link](https://kellyjohnson364.github.
 # Screenshots
 Here's an image of the application being run on a desktop-sized viewport: 
 
-![desktop-ss](assets/images/desktop.png)
+![desktop-ss](assets/images/desktop-ss.png)
 
 
 
 And here's an image of the application being run on a viewport the size of an iPhone X:
 
-![mobile-ss](assets/images/mobile.png)
+![mobile-ss](assets/images/mobile-ss.png)
 
