@@ -1,21 +1,31 @@
 html {
-    background-color: rgb(126, 163, 145);
+    background-color: rgb(163, 151, 126);
 }
 
 body {
     min-height: 100vh;
+    border-radius: 0px;
 }
 
+#figure {
+    height: 600px;
+    width: 100%;
+    background-image: url(../images/image.jpeg);
+    background-size: cover;
+    background-position: center;
+}
 .titleDiv {
-    margin-right: auto;
-    margin-left: auto;
+   margin: auto;
 }
 
 .siteTitle {
     font-size: 3rem !important;
-    max-width: 60%;
+    max-width: 75%;
+    margin-top: 150px;
     margin-right: 0 !important;
     margin-left: 0 !important;
+    background-color: white;
+  
 }
 
 .searchDiv {
@@ -53,13 +63,14 @@ select {
 }
 
 .description {
-    width: 70%;
+    width: 75%;
     margin: 0 auto;
+    background-color: white;
 }
 
 .result-div {
     border: 2px solid rgb(110, 110, 110);
-    margin: 10px;
+    margin: 10px !important;
 }
 
 .brewName {
@@ -68,7 +79,7 @@ select {
 }
 
 .safe-div {
-    background-color: rgb(27, 114, 70);
+    background-color: rgb(66, 173, 120);
     text-align: center;
 }
 
@@ -101,9 +112,6 @@ select {
     color: white;
 }
 
-/* .result-div a {
-    color: #314039;
-} */
 
 .result-div .nearestName {
     color: white;
@@ -117,7 +125,7 @@ select {
 }
 
 .titleAndButton {
-    margin-right: 3rem;
+  
     margin-left: 10px;
     display: flex;
     flex-direction: row;
@@ -135,7 +143,7 @@ select {
     margin-bottom: 10px;
 }
 
-.near-button {
+.nearBtn {
     margin-right: auto;
     margin-left: auto;
     word-wrap: normal;
@@ -195,6 +203,10 @@ select {
     margin-right: 175px;
 }
 
+.icon-button {
+    margin-left: 5px;
+}
+
 @media only screen and (max-width: 768px) {
     .results .result-div {
         margin-left: 0 !important;
@@ -209,7 +221,15 @@ select {
 
 
 @media only screen and (max-width: 500px) {
+    #figure {
+        height: 750px;
+        width: 100%;
+        background-image: url(../images/image_3.jpg);
+        background-size: cover;
+        background-position: center;
+    }
     .siteTitle {
+        margin-top: 75px;
         font-size: 2rem !important;
         border-radius: 0;
     }
@@ -217,8 +237,7 @@ select {
     .searchDiv {
         flex-direction: column;
         width: 80%;
-        margin-right: auto;
-        margin-left: auto;
+        margin: 50px;
     }
 
     .stateDiv {
@@ -260,8 +279,19 @@ select {
     }
 
     .description {
+        margin-top: 30px;
+        margin-bottom: 20px;
         width: 100%;
         border-radius: 0;
+        color:rgb(202, 221, 212);
+        background-color: transparent;
+     
+    }
+    .subtitle {
+        display: none;
+        margin-top: 15px;
+        margin-bottom: 100px !important;
+        font-weight: 500;
     }
 
     .results .result-div {

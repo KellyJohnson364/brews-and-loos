@@ -7,14 +7,17 @@ let state;
 let breweries=[];
 let brewLat;
 let brewLong;
-let lat 
-let long
+let lat; 
+let long;
 let index;
+let lessBtn;
+let moreBtn;
 let nearBtn;
 let history = $('.history');
 let historyStored = JSON.parse(localStorage.getItem("history-info")) || [];
 
 // Collect city and state information from form submission
+
 searchEl.on("click", ".searchBtn", function() { 
    
     state = $('#state option:selected').text();  
@@ -31,6 +34,7 @@ searchEl.on("click", ".searchBtn", function() {
       $('.result-div').remove();
       breweries=[]
       $(".description").remove();
+      $("#figure").height(400)
     } else {
 
       //modal for city and state entry
@@ -55,12 +59,11 @@ let getRestrooms = function () {
               for(let k = 0; k < breweries[0].length; k++) {
                 if ((breweries[0][k].street == answer[i].street) || (breweries[0][k].name == answer[i].name)) {
                   
-                  let neutral = $('<div class="safe-div"></div>').text("This brewery has a gender-neutral restroom! 👍");
+                  let neutral = $('<div class=" mt-4 safe-div"></div>').text("This brewery has a gender-neutral restroom! 👍");
                   $('#result' + k).children('.safe-div').remove();
                   $('#result' + k).append(neutral)
                   // this removes the button a user can click to show nearest gender-neutral bathroom
-                  $('#result' + k).children('.near-button').remove();
-                  
+                  $('#result' + k).children('.nearBtn').remove();                  
                 }}    
         }            
     })   
@@ -92,21 +95,22 @@ let getBreweries = function () {
               //Dynamically create divs for Brewery information
               
 
-              let resultDiv = $('<div class="result-div p-5 ml-6 card" id="result' + i + '"></div>');
-              let brewName = $('<div class="brewName title">').text(response[i].name);
-              let saveBtn = $('<button class="save-button is-pulled-right button">Save this brewery</button>');
-              let brewStreet = $('<div class="brewStreet pt-2">').text(response[i].street)
-              let brewAdd =$('<div class="brewAdd pb-2 is-capitalized">').text(city + ', ' + state);
-              let brewWeb = $('<a target="_blank" class="brewLink" href='+ response[i].website_url +'>Click to visit website</a>');
-              nearBtn = $('<button class="mt-3 button  has-text-centered card-footer-item near-button">Find nearest gender-neutral restroom!</button>');
+              let resultDiv = $('<div class="result-div p-5 ml-6" id="result' + i + '"></div>');
+              let brewName = $('<span class="brewName title">'+ response[i].name + '</span>')
+                  moreBtn = $('<button class="icon-button moreBtn"><i class="fa fa-chevron-down" style="font-size:16px"></i></button>')
+              let saveBtn = $('<button class="save-button is-pulled-right">Save this brewery</button>');
+              let brewStreet = $('<div style="display: none"class="brewStreet pt-2">').text(response[i].street)
+              let brewAdd =$('<div style="display: none" class="brewAdd pb-2 is-capitalized">').text(city + ', ' + state);
+              let brewWeb = $('<a target="_blank" style="display: none" class="brewWeb" href='+ response[i].website_url +'>Click to visit website</a>');
+                  nearBtn = $('<button style="display: none" class="mt-3 has-text-centered card-footer-item nearBtn">Find nearest gender-neutral restroom!</button>');
               lat = $('<span class="lt">'+ response[i].latitude +'</span>')
               long = $('<span class="lng">'+ response[i].longitude +'</span>')
               resultContainer.append(resultDiv);
 
               if (response[i].website_url == "") {
-                resultDiv.append(saveBtn, brewName, brewStreet, brewAdd, nearBtn);
+                resultDiv.append(saveBtn, brewName, moreBtn, brewStreet, brewAdd, nearBtn);
               } else {
-                resultDiv.append(saveBtn, brewName, brewStreet, brewAdd, brewWeb, nearBtn,);
+                resultDiv.append(saveBtn, brewName, moreBtn, brewStreet, brewAdd, brewWeb, nearBtn,);
               };
 
               // fixes issue with save button styling on mobile viewports
@@ -120,7 +124,7 @@ let getBreweries = function () {
               // console.log(response)
               
               if((response[i].latitude) == null) {
-                let brewTel = $('<div class="brewTel">').text('For additional information, call: ' + response[i].phone)
+                let brewTel = $('<div style="display: none" class="brewTel">').text('For additional information, call: ' + response[i].phone)
                 if (response[i].phone) {
                 nearBtn.replaceWith(brewTel)
                 } else {
@@ -133,15 +137,42 @@ let getBreweries = function () {
        .then(renderHistory)
       }
 
+
+resultContainer.on("click", ".moreBtn", function() {
+  
+  $(this).siblings().css('display', '')
+  lessBtn = $('<button class="icon-button lessBtn"><i class="fa fa-chevron-up" style="font-size:16px"></i></button>')
+  $(this).replaceWith(lessBtn)
+})
+
+resultContainer.on("click", ".lessBtn", function() {
+   
+  $(this).siblings('.brewStreet, .brewAdd, .brewWeb, .nearBtn, .brewTel, .nearestTitle, .nearestName, .nearestStreet, .nearestAddress').css('display', 'none')
+  moreBtn = $('<button class="icon-button moreBtn"><i class="fa fa-chevron-down" style="font-size:16px"></i></button>')
+  $(this).replaceWith(moreBtn)
+})
+
+history.on("click", ".moreBtn", function() {
+  
+  $(this).siblings().css('display', '')
+  lessBtn = $('<button class="icon-button lessBtn"><i class="fa fa-chevron-up" style="font-size:16px"></i></button>')
+  $(this).replaceWith(lessBtn)
+})
+ 
+history.on("click", ".lessBtn", function() { 
+  $(this).siblings('.brewStreet, .brewAdd, .brewWeb, .nearBtn, .brewTel, .nearestTitle, .nearestName, .nearestStreet, .nearestAddress').css('display', 'none')
+  moreBtn = $('<button class="icon-button moreBtn"><i class="fa fa-chevron-down" style="font-size:16px"></i></button>')
+  $(this).replaceWith(moreBtn)
+})
+
 // this will be used to line up the rendering in nearestRestroom() with the button that was clicked 
     let classCounter = 0
 
 // event handler for fetching nearest gender-neutral bathroom
-  resultContainer.on("click", ".near-button", function() {
-    brewLat =  $(this).children().first().text();
-    brewLong =  $(this).children().last().text();
-  
-    // console.log(brewLat)
+resultContainer.on("click", ".nearBtn", function() {
+  brewLat =  $(this).children().first().text();
+  brewLong =  $(this).children().last().text();
+ 
 // this will be used to line up the rendering in nearestRestroom() with the button that was clicked 
     classCounter++
     $(this).addClass("btn" + classCounter)
@@ -151,7 +182,7 @@ let getBreweries = function () {
 });
 
 // event handler for fetching nearest gender-neutral bathrom when user clicks from history 
-  history.on("click", ".near-button", function() {
+  history.on("click", ".nearBtn", function() {
     brewLat =  $(this).children().first().text();
     brewLong =  $(this).children().last().text();
     // console.log(brewLong)
@@ -190,10 +221,14 @@ function nearestRestroom() {
 // delegated event handler for saving brewery/bathroom info 
 resultContainer.on("click", ".save-button", function() {
   $(this).text("Saved ✅")
+  $(this).siblings('.brewStreet, .brewAdd, .brewWeb, .nearBtn, .brewTel, .nearestTitle, .nearestName, .nearestStreet, .nearestAddress').css('display', 'none')
+  moreBtn = $('<button class="icon-button moreBtn"><i class="fa fa-chevron-down" style="font-size:16px"></i></button>')
+  $(this).siblings('.lessBtn').replaceWith(moreBtn)
   let thisBrew = $(this).parent().html();
-  // console.log(thisBrew)
-  // console.log(historyStored)
-  if (historyStored.includes(thisBrew)) {
+  let thisName = $(this).siblings('.brewName').html();
+  console.log(thisName)
+  console.log(historyStored)
+  if (historyStored.includes(thisName)) {
 
   } else if (thisBrew == undefined || thisBrew == null) {
 

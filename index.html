@@ -9,18 +9,27 @@
   <link rel="stylesheet" href="./assets/css/style.css" />    
 </head>
 <body>
-    <header class=" hero has-text-centered">
-      <div class="hero-body titleDiv">
-       <h1 class="container is-fluid title box mx-5 is-4 siteTitle">Good Brews & Neutral Loos</h1>
+    <header id="figure" class=" hero has-text-centered">
+      <div class="titleDiv">
+       <h1 class="container is-fluid title mx-5 is-4 siteTitle">Good Brews & Neutral Loos</h1>
       </div>
+      <section class="has-text-centered description">
+       
+        <p>
+           We all love breweries, but we love breweries with gender-neutral restrooms even more! Search your city or
+           favorite brewery. Breweries with positive gender-neutral restroom ratings will be indicated in your search
+           results. If gender-neutral restrooms are not available or have not yet been rated, the "Find nearest restroom"<br> button
+           will display the closest positively rated gender-neutral restroom for each brewery.
+       </p>
+     </section>
 
-      <div class="searchDiv">
+      <div class="searchDiv my-6">
         <div class=" field has-addons search-box-div">
           <div class="control search-control">
             <input class="input px-2 search-box" type="text" placeholder="Search a city or brewery">
           </div>
         </div>
-          <div class="select mx-6 is-multiple column stateDiv">
+          <div class="select is-multiple column stateDiv">
               <select id="state">
                   <option value="">Select a State</option>
                   <option value="AL">Alabama</option>
@@ -78,24 +87,12 @@
                 <button class="button searchBtn"><i class="fa fa-search"></i></button>
               </div>
           </div>
+          
       </div>
-       
-
   </header>
 
   <main>
-            
-        <section class="has-text-centered box hero-body description">
-           <h2 class="subtitle">Welcome to Good Brews and Neutral Loos</h2>
-           <p>
-              We all love breweries, but we love breweries with gender-neutral restrooms even more! Search your city or
-              favorite brewery. Breweries with positive gender-neutral restroom ratings will be indicated in your search
-              results.
-              If gender-neutral restrooms are not available or have not yet been rated, the "Find nearest restroom" button
-              will display the closest positively rated gender-neutral restroom for each brewery.
-          </p>
-        </section>
-            
+      
         <!-- This is div contains search results and history -->
         <div class="columns resultsAndHistory">
           <div class="column is-two-thirds-tablet results"></div>     
@@ -103,7 +100,7 @@
             <div class="titleAndButton">
               <h2 id="saved" class="title savedTitle">Saved Breweries</h2>
               <button class="delete-btn button"><i class="fa fa-trash-o" style="font-size:24px"></i> </button>
-            </div>
+            </div>  
             <div class="history"></div>
           </div>
         </div>
