@@ -6,7 +6,7 @@ Welcome to Good Brews and Neutral Loos! In short, this web app provides users wi
 Additionally, users can save search results in local storage, so they are able to safely perform other searches or navigate to other pages without fear of losing the breweries they were interested in. 
 
 ## Deployment 
-To visit this website, simply follow this [link](https://kellyjohnson364.github.io/brews-and-loos/) or enter the following into your address bar: https://rflctveq.github.io/brews-and-loos/. 
+To visit this website, simply follow this [link](https://kellyjohnson364.github.io/brews-and-loos/) or enter the following into your address bar: https://kellyjohnson364.github.io/brews-and-loos/. 
 <br>
 <br>
 
