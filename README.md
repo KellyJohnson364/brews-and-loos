@@ -6,7 +6,7 @@ Welcome to Good Brews and Neutral Loos! In short, this web app provides users wi
 Additionally, users can save search results in local storage, so they are able to safely perform other searches or navigate to other pages without fear of losing the breweries they were interested in. 
 
 ## Deployment 
-To visit this website, simply follow this [link](https://rflctveq.github.io/brews-and-loos/) or enter the following into your address bar: https://rflctveq.github.io/brews-and-loos/. 
+To visit this website, simply follow this [link](https://kellyjohnson364.github.io/brews-and-loos/) or enter the following into your address bar: https://kellyjohnson364.github.io/brews-and-loos/. 
 <br>
 <br>
 
@@ -31,14 +31,13 @@ To visit this website, simply follow this [link](https://rflctveq.github.io/brew
 * jQuery
 
 # Screenshots
-Here's two images of the application being run on a desktop-sized viewport: 
+Here's an image of the application being run on a desktop-sized viewport: 
 
-![desktop-ss](assets/images/desktop-ss-desc.png)
+![desktop-ss](assets/images/desktop.png)
 
-![desktop-ss](assets/images/desktop-ss-search.png)
 
-And here's two images of the application being run on a viewport the size of an iPhone X:
 
-![mobile-ss](assets/images/mobile-ss-desc.png)
+And here's an image of the application being run on a viewport the size of an iPhone X:
 
-![mobile-ss](assets/images/mobile-ss-search.png)
+![mobile-ss](assets/images/mobile.png)
+
