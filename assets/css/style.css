@@ -213,6 +213,10 @@ select {
         margin-right: 0 !important;
         margin-right: 10px !important;
     }
+    .searchBtn {
+        margin-top: .75rem;
+        width: 100%;
+    }  
 }
 
 
