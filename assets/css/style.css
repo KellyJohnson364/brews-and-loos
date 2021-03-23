@@ -213,7 +213,7 @@ select {
         margin-right: 0 !important;
         margin-right: 10px !important;
     }
-    .searchBtn {
+    .search {
         margin-top: .75rem;
         width: 100%;
     }  
@@ -269,7 +269,7 @@ select {
         margin-top: 0;
     }
 
-    .searchBtn {
+    .search {
         margin-top: .75rem;
         width: 100%;
     }
