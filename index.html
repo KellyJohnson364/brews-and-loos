@@ -23,13 +23,12 @@
        </p>
      </section>
 
-      <div class="searchDiv my-6">
-        <div class=" field has-addons search-box-div">
+      <div class="searchDiv columns my-6">
+        <div class=" field has-addons is-two-thirds column search-box-div">
           <div class="control search-control">
-            <input class="input px-2 search-box" type="text" placeholder="Search a city or brewery">
+            <input id='newSearch' class="input  search-box" type="text" placeholder="Search a city or brewery">
           </div>
-        </div>
-          <div class="select is-multiple column stateDiv">
+        <div class="select is-multiple column stateDiv">
               <select id="state">
                   <option value="">Select a State</option>
                   <option value="AL">Alabama</option>
@@ -86,19 +85,37 @@
               <div class="control search">
                 <button class="button searchBtn"><i class="fa fa-search"></i></button>
               </div>
-          </div>
-          
-      </div>
+        </div>
+        </div>
+        
+      </div>  
   </header>
 
   <main>
-      
+    <div id="here">
         <!-- This is div contains search results and history -->
         <div class="columns resultsAndHistory">
-          <div class="column is-two-thirds-tablet results"></div>     
-          <div class="column has-text-centered is-one-third-tablet is-fullheight historySection">
+          <div class="column is-one-fifth">
+            <div class="menu sticky">				
+              <p  class="menu-label"><b>Quick Links</b></p>
+              <ul id="menu" class="menu-list">
+                <li><a href="#newSearch">Begin New Search</a></li>
+                <li><a href="#saved">Saved Brewery List</a></li>
+                <li><a href="">Previously Searched Cities</a></li>
+                <div id="cities" class='select is-multiple column stateDiv'>
+                  <select id="oldCities">   
+                  </select>
+                  <div class="control search">
+                    <button class="button searchBtn"><i class="fa fa-search"></i></button>
+                  </div> 
+                </div>
+              </ul>
+            </div>  
+          </div>  
+          <div class="column results is-half"></div>     
+          <div class="column has-text-centered">
             <div class="titleAndButton">
-              <h2 id="saved" class="title savedTitle">Saved Breweries</h2>
+              <h2 id="saved" class="subtitle savedTitle">Saved Breweries</h2>
               <button class="delete-btn button"><i class="fa fa-trash-o" style="font-size:24px"></i> </button>
             </div>  
             <div class="history"></div>

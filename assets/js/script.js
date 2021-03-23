@@ -2,7 +2,9 @@ let searchEl = $('.search');
 let cityInputEl = $('.input');
 let stateInputEl = $('#state');
 let resultContainer = $('.results');
+let cityEl = $('#oldCities')
 let city;
+let cities=[];
 let state;
 let breweries=[];
 let brewLat;
@@ -16,10 +18,30 @@ let nearBtn;
 let history = $('.history');
 let historyStored = JSON.parse(localStorage.getItem("history-info")) || [];
 
+
+let renderCities = function () {
+  
+  let remember = localStorage.getItem("cities");
+  console.log(remember)
+   if (remember) {
+     $('<option value="">Select City</option>').appendTo(cityEl);
+     cities.unshift(remember)
+     list = cities.toString().split(",");
+     unique = [...new Set(list)];
+   for (let i=0; i < unique.length; i++) {
+     $('<option value ="'+ unique[i] +'" id=' + i + '>'+ unique[i] +'</option>').appendTo(cityEl);
+ }}else {
+   $('.oldCities').hide()
+   unique=cities
+ }
+ }
+ 
+ renderCities();
+
 // Collect city and state information from form submission
 
-searchEl.on("click", ".searchBtn", function() { 
-   
+searchEl.on("click", ".searchBtn", function(event) { 
+  event.preventDefault();
     state = $('#state option:selected').text();  
     city = cityInputEl.val();
 
@@ -97,8 +119,8 @@ let getBreweries = function () {
 
               let resultDiv = $('<div class="result-div p-5 ml-6" id="result' + i + '"></div>');
               let brewName = $('<span class="brewName title">'+ response[i].name + '</span>')
-                  moreBtn = $('<button class="icon-button moreBtn"><i class="fa fa-chevron-down" style="font-size:16px"></i></button>')
-              let saveBtn = $('<button class="save-button is-pulled-right">Save this brewery</button>');
+                  moreBtn = $('<button class="icon-button moreBtn is-pulled-right"><i class="fa fa-chevron-down" style="font-size:16px"></i></button>')
+              let saveBtn = $('<button class="save-button is-pulled-right">Save It</button>');
               let brewStreet = $('<div style="display: none"class="brewStreet pt-2">').text(response[i].street)
               let brewAdd =$('<div style="display: none" class="brewAdd pb-2 is-capitalized">').text(city + ', ' + state);
               let brewWeb = $('<a target="_blank" style="display: none" class="brewWeb" href='+ response[i].website_url +'>Click to visit website</a>');
@@ -108,9 +130,9 @@ let getBreweries = function () {
               resultContainer.append(resultDiv);
 
               if (response[i].website_url == "") {
-                resultDiv.append(saveBtn, brewName, moreBtn, brewStreet, brewAdd, nearBtn);
+                resultDiv.append(moreBtn, brewName, brewStreet, brewAdd, nearBtn, saveBtn);
               } else {
-                resultDiv.append(saveBtn, brewName, moreBtn, brewStreet, brewAdd, brewWeb, nearBtn,);
+                resultDiv.append(moreBtn,  brewName, brewStreet, brewAdd, brewWeb, nearBtn, saveBtn);
               };
 
               // fixes issue with save button styling on mobile viewports
@@ -141,27 +163,27 @@ let getBreweries = function () {
 resultContainer.on("click", ".moreBtn", function() {
   
   $(this).siblings().css('display', '')
-  lessBtn = $('<button class="icon-button lessBtn"><i class="fa fa-chevron-up" style="font-size:16px"></i></button>')
+  lessBtn = $('<button class="icon-button is-pulled-right lessBtn"><i class="fa fa-chevron-up" style="font-size:16px"></i></button>')
   $(this).replaceWith(lessBtn)
 })
 
 resultContainer.on("click", ".lessBtn", function() {
    
   $(this).siblings('.brewStreet, .brewAdd, .brewWeb, .nearBtn, .brewTel, .nearestTitle, .nearestName, .nearestStreet, .nearestAddress').css('display', 'none')
-  moreBtn = $('<button class="icon-button moreBtn"><i class="fa fa-chevron-down" style="font-size:16px"></i></button>')
+  moreBtn = $('<button class="icon-button is-pulled-right moreBtn"><i class="fa fa-chevron-down" style="font-size:16px"></i></button>')
   $(this).replaceWith(moreBtn)
 })
 
 history.on("click", ".moreBtn", function() {
   
   $(this).siblings().css('display', '')
-  lessBtn = $('<button class="icon-button lessBtn"><i class="fa fa-chevron-up" style="font-size:16px"></i></button>')
+  lessBtn = $('<button class="icon-button is-pulled-right lessBtn"><i class="fa fa-chevron-up" style="font-size:16px"></i></button>')
   $(this).replaceWith(lessBtn)
 })
  
 history.on("click", ".lessBtn", function() { 
   $(this).siblings('.brewStreet, .brewAdd, .brewWeb, .nearBtn, .brewTel, .nearestTitle, .nearestName, .nearestStreet, .nearestAddress').css('display', 'none')
-  moreBtn = $('<button class="icon-button moreBtn"><i class="fa fa-chevron-down" style="font-size:16px"></i></button>')
+  moreBtn = $('<button class="icon-button is-pulled-right moreBtn"><i class="fa fa-chevron-down" style="font-size:16px"></i></button>')
   $(this).replaceWith(moreBtn)
 })
 
@@ -237,7 +259,7 @@ resultContainer.on("click", ".save-button", function() {
       // console.log(historyStored)
       historyStored.push(thisBrew);
       localStorage.setItem("history-info", JSON.stringify(historyStored));
-      history.append('<div class="result-div p-3 mr-6 card">' + thisBrew + '</div>');
+      history.append('<div class="result-div p-3 mr-6 ">' + thisBrew + '</div>');
       history.children($('#result-div')).children(".save-button").remove();
   };
 
@@ -246,7 +268,7 @@ resultContainer.on("click", ".save-button", function() {
 // renders user's recent searches to .history
 function renderHistory() {
   for (let i=0; i<historyStored.length; i++) {
-    history.append('<div class="result-div p-3 mr-6 card">' + historyStored[i] + '</div>');
+    history.append('<div class="result-div p-3 mr-6">' + historyStored[i] + '</div>');
     let historyChildren = $('.history .result-div .save-button');
     historyChildren.remove();
   };
@@ -259,7 +281,7 @@ $(".resultsAndHistory").on("click", ".delete-btn", function() {
   localStorage.setItem("history-info", JSON.stringify([]));
   localStorage.setItem("breweries", JSON.stringify([]));
   history.children(".result-div").remove();
-  $(".save-button").text("Save this brewery");
+  $(".save-button").text("Save It");
 })
 
 // media queries 

@@ -31,16 +31,15 @@ body {
 .searchDiv {
     display: flex;
     flex-direction: row;
-    margin-bottom: 3rem;
+    
 }
 
 .search-box {
     margin-left: 3rem;
+    margin-right: 3rem;
 }
 
-.selectDiv {
-    margin-bottom: .75rem;
-}
+
 
 select {
     text-rendering: auto !important; 
@@ -50,17 +49,16 @@ select {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    margin-left: 35px !important;
+    padding: 0px;
+    margin-left: 47px !important;
    
 }
 
 #state {
-    margin-top: -.75rem;
+  padding: 0px 15px; 
 }
 
-.searchBtn {
-    margin-top: -.75rem;
-}
+
 
 .description {
     width: 75%;
@@ -86,6 +84,10 @@ select {
 .main-header {
     padding-left: 20px;
     padding-top: 20px;
+}
+.sticky	{
+	position: sticky;
+  	top: 30px;
 }
 
 .resultsAndHistory {
@@ -140,7 +142,8 @@ select {
 }
 
 .save-button {
-    margin-bottom: 10px;
+    margin: auto 0px 0px auto;
+
 }
 
 .nearBtn {
@@ -189,22 +192,15 @@ select {
     margin-bottom: 15px;
 }
 
-.navbar {
-    min-height: unset !important;
-    height:40px;
-   
-}
 
-.navbar-end {
-    margin-left: 400px
-}
-
-.navbar-start {
-    margin-right: 175px;
-}
 
 .icon-button {
+    background-color:rgb(126, 163, 145); 
+    color: white;
     margin-left: 5px;
+    margin-top: -15px;
+    margin-right: -15px;
+    border: none;
 }
 
 @media only screen and (max-width: 768px) {
@@ -304,14 +300,7 @@ select {
         margin-right: 10px !important;
     }
 
-    .navbar-end {
-      margin-left: 0px;
-     
-    }
 
-    .navbar-start {
-        margin-right: 0px;
-    }
    
 
 }
