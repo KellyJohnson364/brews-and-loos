@@ -183,7 +183,7 @@ let getBreweries = function () {
               
 
               let resultDiv = $('<div class=" result-div" ></div>');
-                moreBtn = $('<button style="width:95%" class="icon-button moreBtn "><i class="fa fa-chevron-down is-pulled-right" style="font-size:14px"></i></button>')
+                moreBtn = $('<button style="width:98%" class="icon-button moreBtn "><i class="fa fa-chevron-down is-pulled-right" style="font-size:14px"></i></button>')
                 brewName = $('<span id="result' + i + '"  class="brewName mr-6 title">'+ allBrew[i].name + '</span>')   
               let saveBtn = $('<button style="width:20%" class="save-button">Save It</button>');
               let brewStreet = $('<div style=" display: none "class="brewStreet pt-2">').text(allBrew[i].street)
