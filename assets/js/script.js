@@ -37,6 +37,7 @@ let renderCities = function () {
      $('<option value ='+ unique[i] +' id=' + i + '>'+ unique[i] +'</option>').appendTo(cityEl);
  }}else {
    $('#oldCities').hide()
+   unique=cities
   
  }
  }
