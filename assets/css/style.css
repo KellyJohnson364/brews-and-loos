@@ -35,8 +35,7 @@ body {
 }
 
 .search-box {
-    margin-left: 3rem;
-    margin-right: 3rem;
+   
 }
 
 
@@ -45,14 +44,8 @@ select {
     text-rendering: auto !important; 
 }
 
-.stateDiv {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    padding: 0px;
-    margin-left: 47px !important;
-   
-}
+
+
 
 #state {
   padding: 0px 15px; 
@@ -102,6 +95,7 @@ select {
     color: black;
 }
 .result-div {
+
     border: 2px solid rgb(110, 110, 110);
     margin: 10px !important;
     background-color: rgb(126, 163, 145);
@@ -202,6 +196,7 @@ select {
 }
 
 .save-button {
+    margin-right: -25px;
     height:fit-content;  
     margin-top: 10px;
     padding: 5px;
@@ -218,9 +213,12 @@ select {
         margin-right: 10px !important;
     }
     .search {
-        margin-top: .75rem;
+      
         width: 100%;
     }  
+    .searchBtn {
+        width:100%;
+    }
 }
 
 
@@ -244,14 +242,7 @@ select {
         margin: 50px;
     }
 
-    .stateDiv {
-        flex-direction: column;
-        width: 100%;
-        padding: 0 !important;
-        margin-left: 0 !important;
-        margin-right: auto;
-        margin-left: auto;
-    }
+  
 
     .search-box-div {
         width: 100%;
@@ -274,7 +265,7 @@ select {
     }
 
     .search {
-        margin-top: .75rem;
+      
         width: 100%;
     }
 
@@ -298,16 +289,18 @@ select {
         font-weight: 500;
     }
 
-    .results .result-div {
-        margin-left: 0 !important;
-        margin-left: 10px !important;
+
+
+    .history .result-div .icon-button {
+        width: 100%;
+        
     }
-
-    .history .result-div {
-        margin-right: 0 !important;
-        margin-right: 10px !important;
+    
+    .save-button {
+        height:fit-content;  
+     
     }
+    
 
-
-   
+} 
   

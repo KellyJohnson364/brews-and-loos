@@ -181,10 +181,10 @@ let getBreweries = function () {
               //Dynamically create divs for Brewery information
               
 
-              let resultDiv = $('<div class="columns result-div" ></div>');
-                  brewName = $('<span id="result' + i + '"  class="column is-9 brewName title">'+ allBrew[i].name + '</span>')
-                  moreBtn = $('<button class="icon-button is-pulled-right moreBtn "><i class="fa fa-chevron-down" style="font-size:14px"></i></button>')
-              let saveBtn = $('<button class="save-button column is-2 is-pulled-right">Save It</button>');
+              let resultDiv = $('<div class=" result-div" ></div>');
+                moreBtn = $('<button style="width:95%" class="icon-button moreBtn "><i class="fa fa-chevron-down is-pulled-right" style="font-size:14px"></i></button>')
+                brewName = $('<span id="result' + i + '"  class="brewName mr-6 title">'+ allBrew[i].name + '</span>')   
+              let saveBtn = $('<button style="width:20%" class="save-button">Save It</button>');
               let brewStreet = $('<div style=" display: none "class="brewStreet pt-2">').text(allBrew[i].street)
               let brewAdd =$('<div style=" display: none" class="brewAdd pb-2 is-capitalized">').text(city + ', ' + selectedState);
               let brewWeb = $('<a target="_blank" style="display: none" class="brewWeb" href='+ allBrew[i].website_url +'>Click to visit website</a><br>');
@@ -194,10 +194,10 @@ let getBreweries = function () {
               resultContainer.append(resultDiv);
 
               if (allBrew[i].website_url == "") {
-                resultDiv.append( brewName, saveBtn, moreBtn);
+                resultDiv.append(moreBtn, brewName,  saveBtn);
                 brewName.append(brewStreet, brewAdd, nearBtn)
               } else {
-                resultDiv.append( brewName, saveBtn, moreBtn);
+                resultDiv.append(moreBtn, brewName,  saveBtn);
                 brewName.append(brewStreet, brewAdd, brewWeb, nearBtn,)
               };
 
@@ -229,27 +229,27 @@ let getBreweries = function () {
 resultContainer.on("click", ".moreBtn", function() {
   
   $(this).siblings(brewName).children().css('display', '')
-  lessBtn = $('<button class="icon-button lessBtn"><i class="fa fa-chevron-up" style="font-size:16px"></i></button>')
+  lessBtn = $('<button style="width:98%" class="icon-button lessBtn"><i class="fa fa-chevron-up is-pulled-right" style="font-size:16px"></i></button>')
   $(this).replaceWith(lessBtn)
 })
 
 resultContainer.on("click", ".lessBtn", function() {
    
   $(this).siblings(brewName).children().css('display', 'none')
-  moreBtn = $('<button class="icon-button moreBtn"><i class="fa fa-chevron-down" style="font-size:16px"></i></button>')
+  moreBtn = $('<button style="width:98%" class="icon-button moreBtn"><i class="fa fa-chevron-down is-pulled-right" style="font-size:16px"></i></button>')
   $(this).replaceWith(moreBtn)
 })
 
 history.on("click", ".moreBtn", function() {
   
   $(this).siblings(brewName).children().css('display', '')
-  lessBtn = $('<button class="icon-button lessBtn"><i class="fa fa-chevron-up" style="font-size:16px"></i></button>')
+  lessBtn = $('<button style="width:98%" class="icon-button lessBtn"><i class="fa fa-chevron-up is-pulled-right" style="font-size:16px"></i></button>')
   $(this).replaceWith(lessBtn)
 })
  
 history.on("click", ".lessBtn", function() { 
   $(this).siblings(brewName).children().css('display', 'none')
-  moreBtn = $('<button class="icon-button moreBtn"><i class="fa fa-chevron-down" style="font-size:16px"></i></button>')
+  moreBtn = $('<button style="width:98%" class="icon-button moreBtn"><i class="fa fa-chevron-down is-pulled-right" style="font-size:16px"></i></button>')
   $(this).replaceWith(moreBtn)
 })
 
