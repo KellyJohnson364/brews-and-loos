@@ -182,7 +182,7 @@ let getBreweries = function () {
               
 
               let resultDiv = $('<div class="columns result-div" ></div>');
-                  brewName = $('<span id="result' + i + '" style="font-size:16px" class="column is-9 brewName title">'+ allBrew[i].name + '</span>')
+                  brewName = $('<span id="result' + i + '"  class="column is-9 brewName title">'+ allBrew[i].name + '</span>')
                   moreBtn = $('<button class="icon-button is-pulled-right moreBtn "><i class="fa fa-chevron-down" style="font-size:14px"></i></button>')
               let saveBtn = $('<button class="save-button column is-2 is-pulled-right">Save It</button>');
               let brewStreet = $('<div style=" display: none "class="brewStreet pt-2">').text(allBrew[i].street)
@@ -194,9 +194,8 @@ let getBreweries = function () {
               resultContainer.append(resultDiv);
 
               if (allBrew[i].website_url == "") {
-                resultDiv.append( brewName, saveBtn);
+                resultDiv.append( brewName, saveBtn, moreBtn);
                 brewName.append(brewStreet, brewAdd, nearBtn)
-                resultDiv.append(saveBtn)
               } else {
                 resultDiv.append( brewName, saveBtn, moreBtn);
                 brewName.append(brewStreet, brewAdd, brewWeb, nearBtn,)
@@ -213,8 +212,10 @@ let getBreweries = function () {
               // console.log(response)
               
               if((allBrew[i].latitude) == null) {
+                
                 let brewTel = $('<div style="display: none" class="brewTel">').text('For additional information, call: ' + allBrew[i].phone)
                 if (allBrew[i].phone) {
+                 
                 nearBtn.replaceWith(brewTel)
                 } else {
                   nearBtn.remove()
@@ -222,8 +223,6 @@ let getBreweries = function () {
               }
             }
             }    
-        
-       renderHistory()
       }
 
 
@@ -277,7 +276,6 @@ resultContainer.on("click", ".nearBtn", function() {
     // console.log(brewLong)
     classCounter++
     $(this).addClass("btn" + classCounter)
-
     nearestRestroom();
 })
 
