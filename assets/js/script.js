@@ -12,6 +12,7 @@ let empty=[];
 let allBrew
 let brewLat;
 let brewLong;
+let unique
 let brewName
 let lat; 
 let long;
