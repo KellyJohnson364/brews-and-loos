@@ -225,6 +225,7 @@ let getBreweries = function () {
               }
             }
             }    
+          renderHistory();
       }
 
 
