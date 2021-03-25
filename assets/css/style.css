@@ -66,10 +66,7 @@ select {
     background-color: white;
 }
 
-.result-div {
-    border: 2px solid rgb(110, 110, 110);
-    margin: 10px !important;
-}
+
 
 .brewName {
     font-weight: 500;
@@ -104,8 +101,9 @@ select {
     text-align: center;
     color: black;
 }
-
 .result-div {
+    border: 2px solid rgb(110, 110, 110);
+    margin: 10px !important;
     background-color: rgb(126, 163, 145);
     color: white;
 }
@@ -141,11 +139,6 @@ select {
     overflow: hidden;
 }
 
-.save-button {
-    margin: auto 0px 0px auto;
-
-}
-
 .nearBtn {
     margin-right: auto;
     margin-left: auto;
@@ -179,7 +172,13 @@ select {
     margin-right: auto;
     margin-left: auto;
 }
-
+.stateSelect .modal-content {
+    width: 35%;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    margin-right: auto;
+    margin-left: auto;
+}
 .noResponse footer {
     background-color:rgb(110, 110, 110);
     color: white;
@@ -192,15 +191,20 @@ select {
     margin-bottom: 15px;
 }
 
-
-
 .icon-button {
+    height:fit-content;
+  
+    margin-left: 10px;
+    margin-right: -10px;
     background-color:rgb(126, 163, 145); 
     color: white;
-    margin-left: 5px;
-    margin-top: -15px;
-    margin-right: -15px;
     border: none;
+}
+
+.save-button {
+    height:fit-content;  
+    margin-top: 10px;
+    padding: 5px;
 }
 
 @media only screen and (max-width: 768px) {
@@ -306,6 +310,4 @@ select {
 
 
    
-
-}
-
+  
