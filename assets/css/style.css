@@ -102,8 +102,10 @@ select {
     color: white;
 }
 
-.result-div .brewName {
-    color: white;
+.results .result-div .card-header .brewName {
+    
+    font-weight: 500;
+    font-size: 1.25rem;
 }
 
 

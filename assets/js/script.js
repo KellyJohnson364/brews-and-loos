@@ -17,9 +17,8 @@ let brewName
 let lat; 
 let long;
 let index;
-let lessBtn;
-let moreBtn;
 let nearBtn;
+let headDiv
 let history = $('.history');
 let historyStored = JSON.parse(localStorage.getItem("history-info")) || [];
 
@@ -183,24 +182,27 @@ let getBreweries = function () {
               //Dynamically create divs for Brewery information
               
 
-              let resultDiv = $('<div class=" result-div" ></div>');
-                moreBtn = $('<button style="width:100%" class="icon-button moreBtn "><i class="fa fa-chevron-down is-pulled-right" style="font-size:14px"></i></button>')
-                brewName = $('<span id="result' + i + '"  class="brewName mr-6 title">'+ allBrew[i].name + '</span>')   
+              let resultDiv = $('<div class="card result-div" ></div>');
+               headDiv = $('<header id="'+i+'"class="card-header"></header>')
+              let contentDiv = $('<div id="result' + i + '" class=" ml-4 content content'+i+'"></div)')
+              let footDiv = $('<footer class="card-footer foot-div"></footer>')
+               // moreBtn = $('<button id='+i+' class="card-header-icon moreBtn" aria-label="more options"><span class="icon"><i class="fa fa-chevron-down" aria-hidden="true"></i></span></button>')
+                brewName = $('<p class="card-header-title brewName">'+ allBrew[i].name + '</p>')  
               let saveBtn = $('<button style="width:20%" class="save-button">Save It</button>');
-              let brewStreet = $('<div style=" display: none "class="brewStreet pt-2">').text(allBrew[i].street)
-              let brewAdd =$('<div style=" display: none" class="brewAdd pb-2 is-capitalized">').text(city + ', ' + selectedState);
-              let brewWeb = $('<a target="_blank" style="display: none" class="brewWeb" href='+ allBrew[i].website_url +'>Click to visit website</a><br>');
-                  nearBtn = $('<button style="display: none" class="mt-3 has-text-centered nearBtn">Find nearest gender-neutral restroom!</button><br>');
+              let brewStreet = $('<div "class="brewStreet pt-2">').text(allBrew[i].street)
+              let brewAdd =$('<div class="brewAdd pb-2 is-capitalized">').text(city + ', ' + selectedState);
+              let brewWeb = $('<a target="_blank"  class="brewWeb" href='+ allBrew[i].website_url +'>Click to visit website</a><br>');
+                  nearBtn = $('<button  class="mt-3 has-text-centered nearBtn">Find nearest gender-neutral restroom!</button><br>');
               lat = $('<span class="lt">'+ allBrew[i].latitude +'</span>')
               long = $('<span class="lng">'+ allBrew[i].longitude +'</span>')
               resultContainer.append(resultDiv);
-
+              resultDiv.append(headDiv, contentDiv, footDiv)
+              headDiv.append(brewName, moreBtn)
+              footDiv.append(saveBtn)
               if (allBrew[i].website_url == "") {
-                resultDiv.append(moreBtn, brewName,  saveBtn);
-                brewName.append(brewStreet, brewAdd, nearBtn)
+                contentDiv.append(brewStreet, brewAdd, nearBtn)
               } else {
-                resultDiv.append(moreBtn, brewName,  saveBtn);
-                brewName.append(brewStreet, brewAdd, brewWeb, nearBtn,)
+                contentDiv.append(brewStreet, brewAdd, brewWeb, nearBtn,)
               };
 
               // fixes issue with save button styling on mobile viewports
@@ -229,17 +231,18 @@ let getBreweries = function () {
       }
 
 
-resultContainer.on("click", ".moreBtn", function() {
+resultContainer.on("click", ".moreBtn", function(event) {
+  event.stopPropagation();
   
-  $(this).siblings(brewName).children().css('display', '')
-  lessBtn = $('<button style="width:98%" class="icon-button lessBtn"><i class="fa fa-chevron-up is-pulled-right" style="font-size:16px"></i></button>')
+  console.log($(this.parentElement.siblingElement))
+  lessBtn = $('<button class="card-header-icon lessBtn" aria-label="less options"><span class="icon"><i class="fa fa-chevron-up" aria-hidden="true"></i></span></button>')
   $(this).replaceWith(lessBtn)
 })
 
 resultContainer.on("click", ".lessBtn", function() {
    
-  $(this).siblings(brewName).children().css('display', 'none')
-  moreBtn = $('<button style="width:98%" class="icon-button moreBtn"><i class="fa fa-chevron-down is-pulled-right" style="font-size:16px"></i></button>')
+  $(this).parent(brewName).children().css('display', 'none')
+  moreBtn = $('<button class="card-header-icon moreBtn" aria-label="more options"><span class="icon"><i class="fa fa-chevron-down" aria-hidden="true"></i></span></button>')
   $(this).replaceWith(moreBtn)
 })
 
@@ -310,9 +313,9 @@ function nearestRestroom() {
 // delegated event handler for saving brewery/bathroom info 
 resultContainer.on("click", ".save-button", function() {
   $(this).text("Saved ✅")
-  let thisBrew = $(this).parent().html();
-  // console.log(thisBrew)
-  // console.log(historyStored)
+  let thisBrew = $(this).parent().parent().html();
+   console.log(thisBrew)
+  console.log(historyStored)
   if (historyStored.includes(thisBrew)) {
 
   } else if (thisBrew == undefined || thisBrew == null) {
@@ -322,8 +325,8 @@ resultContainer.on("click", ".save-button", function() {
       // console.log(historyStored)
       historyStored.push(thisBrew);
       localStorage.setItem("history-info", JSON.stringify(historyStored));
-      history.append('<div class="result-div p-3 mr-6 card">' + thisBrew + '</div>');
-      history.children($('#result-div')).children(".save-button").remove();
+      history.append('<div class="result-div p-3 mr-6 ">' + thisBrew + '</div>');
+      history.children($('.result-div')).children($('.foot-div')).children(".save-button").remove();
   };
 
 });
@@ -334,7 +337,7 @@ resultContainer.on("click", ".save-button", function() {
 function renderHistory() {
   for (let i=0; i<historyStored.length; i++) {
     history.append('<div class="result-div  mr-6">' + historyStored[i] + '</div>');
-    let historyChildren = $('.history .result-div .save-button');
+    let historyChildren = $('.history .foot-div .save-button');
     historyChildren.remove();
 
   };
