@@ -17,6 +17,8 @@ let brewName
 let lat; 
 let long;
 let index;
+let lessBtn;
+let moreBtn;
 let nearBtn;
 let headDiv
 let history = $('.history');
