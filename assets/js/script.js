@@ -199,7 +199,7 @@ let getBreweries = function () {
               long = $('<span class="lng">'+ allBrew[i].longitude +'</span>')
               resultContainer.append(resultDiv);
               resultDiv.append(headDiv, contentDiv, footDiv)
-              headDiv.append(brewName, moreBtn)
+              headDiv.append(brewName)
               footDiv.append(saveBtn)
               if (allBrew[i].website_url == "") {
                 contentDiv.append(brewStreet, brewAdd, nearBtn)
