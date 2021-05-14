@@ -4,7 +4,7 @@ let resultContainer = $('.results');
 let container =$('.resultsAndHistory')
 let cityEl = $('.oldCities')
 let city;
-let cities=[];
+let input;
 let state;
 let states=[]
 let cityState=[];
@@ -26,27 +26,27 @@ let history = $('.history');
 let historyStored = JSON.parse(localStorage.getItem("history-info")) || [];
 
 
-let renderCities = function () {
+function renderCities() {
   cityEl.children().remove()
-  
   let remember = JSON.parse(localStorage.getItem("cities"))
-
-   if (remember) {
+  if (remember && !input) {
+    uniqueCities = remember
+  }else if (remember && input) {
+    remember.unshift(input)
+    list = remember.toString().split(",");
+    uniqueCities = [...new Set(list)];
+  }else {
+    uniqueCities.unshift(input)
+  }
+   if (uniqueCities) {
+     console.log(uniqueCities)
+     localStorage.setItem("cities", JSON.stringify(uniqueCities));
      $('<option value="">Select</option>').appendTo(cityEl);
-     cities.unshift(remember)
-     list = remember.toString().split(",");
-     uniqueCities = [...new Set(list)];
-    // console.log(cities)
-    // console.log(list)
-    // console.log(uniqueCities)
-   for (let i=0; i < uniqueCities.length; i++) {
-     $('<option value ='+ uniqueCities[i] +' id=' + i + '>'+ uniqueCities[i] +'</option>').appendTo(cityEl);
- }}else {
-   $('.oldCities').hide()
-   uniqueCities=cities
-  
- }
- }
+     for (let i=0; i < uniqueCities.length; i++) {
+      $('<option value ='+ uniqueCities[i] +' id=' + i + '>'+ uniqueCities[i] +'</option>').appendTo(cityEl);
+     }
+    }
+}    
  renderCities();
 
 // renders user's recent searches to .history
@@ -68,7 +68,7 @@ renderHistory();
  
 // Collect city and state information from form submission
 
-let formSubmitHandler = function () {
+function formSubmitHandler() {
  
     if (city) {
       city = city.replaceAll(" ", "%20");
@@ -104,21 +104,15 @@ $('.oldCities').change(function() {
   formSubmitHandler()
 })
 
-$(".search").click(function() {
-  city = cityInputEl.val();
-  city.toUpperCase()
-  if (uniqueCities.includes(city)) {
-  }else {
-    cities.unshift(city)
-   
-  }
-
+$(".searchDiv").on("click", '.search', function() {
+  city = cityInputEl.val().toUpperCase()
+  input = city
   formSubmitHandler()
 })
 
 
 // Fetch lists of safe unisex restrooms using city and "Brew". 
-let getRestrooms = function () {
+function getRestrooms() {
   
   restUrl = 'https://www.refugerestrooms.org/api/v1/restrooms/search?page=&per_page=100&offset=0&unisex=true&query=brew%20'+ city +''
   
@@ -132,6 +126,7 @@ let getRestrooms = function () {
                   let neutral = $('<div class=" mt-4 safe-div"></div>').text("This brewery has a gender-neutral restroom!");
                   $('#result' + k).children('.safe-div').remove();
                   $('#result' + k).append(neutral)
+                  $('#name' + k).addClass('logo')
                   // this removes the button a user can click to show nearest gender-neutral bathroom
                   $('#result' + k).children('.nearBtn').remove();                  
                 }}    
@@ -140,7 +135,7 @@ let getRestrooms = function () {
   }             
 // fetch breweries by city and then ensure correct state.  
 
-let getBreweries = function () {
+function getBreweries() {
     let brewUrl = 'https://api.openbrewerydb.org/breweries/search?query=' + city +''
   
       fetch(brewUrl)
@@ -148,7 +143,6 @@ let getBreweries = function () {
         .then(function(response) {
           // in cases where there's no response
           if (response.length == 0) {
-            cities.shift()
             const Toast = Swal.mixin({
               toast: true,
               position: 'center',
@@ -162,7 +156,7 @@ let getBreweries = function () {
               location.reload();
             })
           }else {
-            localStorage.setItem("cities", JSON.stringify(cities));
+           
             renderCities()
 
             allBrew = response.concat(empty)
@@ -194,13 +188,14 @@ let getBreweries = function () {
                       console.log(uniqueStates)
                   })    
                 }else {
-                  selectedState = uniqueStates
+                  states = [];
+                  selectedState = uniqueStates;
                   displayBreweries();
                 }
           } 
         }) 
 }
-        let displayBreweries = function () {       
+        function displayBreweries() {       
           $('#searched').css('display', '')
          //  console.log(allBrew)
          //   console.log(selectedState)
@@ -219,7 +214,7 @@ let getBreweries = function () {
               let contentDiv = $('<div style="display: none" id="result' + i + '" class="content content'+i+'"></div)')
               let footDiv = $('<footer style="display: none" class="card-footer foot-div"></footer>')
                   moreBtn = $('<button class="card-header-icon moreBtn" aria-label="more options"><span class="icon"><i class="fa fa-chevron-down icon" aria-hidden="true"></i></span></button>')
-                  brewName = $('<b class="card-header-title brewName">'+ allBrew[i].name + '</b>')  
+                  brewName = $('<b id= "name'+i+'" class="card-header-title brewName">'+ allBrew[i].name + '</b>')  
               let saveBtn = $('<button style="width:20%" class="save-button button  '+ allBrew[i].name +'">Save</button>');
               let brewStreet = $('<div "class="brewStreet">').text(allBrew[i].street)
               let brewAdd =$('<div class="brewAdd  pb-2 is-capitalized">').text(city + ', ' + selectedState);
@@ -361,7 +356,7 @@ $('nav').on("click", "a", function() {
 $('nav').on("click", ".navbar-link", function() {
   $('.oldTowns').children().remove()
 for (let i=0; i < uniqueCities.length; i++) {
-  $('<a class="navbar-item town" value ='+ uniqueCities[i] +' id=' + i + '>'+ uniqueCities[i] +'</a>').appendTo($('.oldTowns'))
+  $('<a href="#searched" class="navbar-item town" value ='+ uniqueCities[i] +' id=' + i + '>'+ uniqueCities[i] +'</a>').appendTo($('.oldTowns'))
 }
  $('.navbar-dropdown').toggleClass('is-hidden-touch');
 })
