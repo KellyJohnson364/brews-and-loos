@@ -1,101 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class= "has-navbar-fixed-bottom">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Good Brews and Neutral Loos</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma-rtl.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="./assets/css/style.css" />    
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Girassol&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/style.css" />  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma-rtl.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> 
 </head>
 <body>
-    <header id="figure" class=" hero has-text-centered">
+    <header id="figure" class="is-align-content-center hero has-text-centered">
       <div class="titleDiv">
-       <h1 class="container is-fluid title mx-5 is-4 siteTitle">Good Brews & Neutral Loos</h1>
+       <h1 class="container is-fluid title mt-5 mr-5 siteTitle">Good Brews & Neutral Loos</h1>
       </div>
-      <section class="has-text-centered description px-6">
-       
+      <section class="has-text-centered description ">
         <p>
-           We all love breweries, but we love breweries with gender-neutral restrooms even more! Search your city or
-           favorite brewery. Breweries with positive gender-neutral restroom ratings will be indicated in your search
-           results. If gender-neutral restrooms are not available or have not yet been rated, the "Find nearest restroom"<br> button
-           will display the closest positively rated gender-neutral restroom for each brewery.
+          Search your city or favorite brewery for positive gender-neutral restroom ratings. 
+          The nearest restroom button will locate the nearest option for breweries with no ratings. 
        </p>
      </section>
-     <div class="searchDiv m-6">
-     <div class="field has-addons search-box-div">
-      <div class="control">
-        <input id='newSearch' class="input  search-box" type="text" placeholder="Search a city or brewery">
-      </div>
-      <div  class="control search">
-        <input class="button searchBtn" type="submit" value="search">
-      
-      </div>
-      </div>
-     </div>
-        
+     <div class="field has-addons my-6 is-flex searchDiv ">
+      <p class="control is-expanded ">
+        <input id= "newSearch" class="input is-medium" type="text" placeholder="Search a City or Brewery">
+      </p>
+      <a class="control">
+        <button class="button search is-medium">
+         Search
+        </button>
+      </a>
+    </div>
   </header>
-
   <main>
     <div id="here">
         <!-- This is div contains search results and history -->
-        <div class="columns resultsAndHistory">
+        <div class="columns resultsAndHistory has-text-centered ">
           <div class="column is-hidden-touch is-one-fifth">
-            <div class="menu sticky">				
+            <div class="menu sticky ml-3">				
               <p  class="menu-label"><b>Quick Links</b></p>
               <ul id="menu" class="menu-list">
                 <li><a href="#newSearch">Begin New Search</a></li>
                 <li><a href="#saved">Saved Brewery List</a></li>
-                <li>Previously Searched Cities</li>
-                <div id="cities" class='select'>
-                  <select id="oldCities">   
+                <li>Previously Searched:</li>
+                <div id="cities" class='select is-normal'>
+                  <select class="oldCities">   
                   </select>
-                 
                 </div>
               </ul>
             </div>  
           </div>  
-          <div class="column results is-half"></div>     
+          <div class="column results is-half">
+            <p id = "searched"  class="menu-label" style="display: none"><b>Search Results</b></p> 
+          </div>     
           <div class="column has-text-centered">
-            <div class="titleAndButton">
-              <h2 id="saved" class="subtitle savedTitle">Saved Breweries</h2>
-              <button class="delete-btn button"><i class="fa fa-trash-o" style="font-size:24px"></i> </button>
+            <div class="titleAndButton  ml-3">
+              <p  id = "saved" class="menu-label"><b>Saved Breweries</b></p>
+              <button class="delete-btn button"><i class="fa fa-trash-o icon" style="font-size:24px"></i> </button>
             </div>  
             <div class="history"></div>
           </div>
         </div>
-         
+
+        <nav class="navbar is-dark is-fixed-bottom is-hidden-desktop" role="navigation" aria-label="main navigation">
+          <div class="navbar-brand">
+              <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+              </a>
+            </div> 
+            <div id="navbarBasicExample" class="navbar-menu butts">
+              <div class="navbar-start">
+                <a class="navbar-item" href="#newSearch">
+                Top/New Search
+                </a>
+                <div class="navbar-item has-dropdown is-hoverable">
+                  <div class="navbar-link">
+                   Previous Searches
+                  </div>
+                    <div class="navbar-dropdown is-hidden-touch oldTowns"></div>
+                </div>
+              </div>
+              <div class="navbar-end">
+                <div class="navbar-item">                                    
+                  <a class="navbar-item" href="#saved">
+                    Saved Breweries
+                  </a>
+                </div> 
+              </div>
+            </div>     
+        </nav>
                 
-        <!-- This is the modal users see if they don't fulfill search requirements -->
-        <div class="modal selectCityState">
-          <div class="modal-card no-input ">
-            <footer class="modal-card-foot">
-              <p>Please select a city and a state.</p>
-              <button class="button close">OK</button>
-            </footer>
-          </div>
-        </div>
-        <div class="modal  stateSelect">
-          <div class="modal-background"></div>
-          <div class="modal-content">
-            <div class="select stateDiv">
-              <select id="stateModal">
-              </select>
-             
-          </div>
-          <button class="modal-close is-large" aria-label="close"></button>
-        </div>
-        </div>
+       
 
-        <!-- This is the modal users see if their search returns no responses -->
-        <div class="modal noResponse">
-          <footer class="modal-card-foot">
-            <p>Whoops!</p>
-          <p>We didn't recognize that. Please check your spelling and try again.</p>
-            <button class="button close">OK</button>
-          </footer>
-        </div>
-
+       
   </main>
         
 <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>

@@ -1,12 +1,14 @@
-html {
-    background-color: rgb(163, 151, 126);
+* :not(.icon) {   
+    font-family: 'Girassol', cursive !important;
+    font-size: 1.5rem; 
 }
-
+html {
+	scroll-behavior: smooth
+}
 body {
     min-height: 100vh;
     border-radius: 0px;
 }
-
 #figure {
     height: 600px;
     width: 100%;
@@ -15,71 +17,52 @@ body {
     background-position: center;
 }
 .titleDiv {
-   margin: auto;
+    margin-right: auto;
+    margin-left: auto;
 }
-
+#logo {
+    font-family: FontAwesome;
+    display: inline-block;
+    padding-right: 6px;
+    vertical-align: middle;
+    content: "\f22c";
+ }
 .siteTitle {
-    font-size: 3rem !important;
+    font-size: 4rem !important;
     max-width: 75%;
     margin-top: 150px;
     margin-right: 0 !important;
     margin-left: 0 !important;
-    background-color: white;
-  
+    background-color: white; 
 }
-
-.searchDiv {
-    display: flex;
-    flex-direction: row;
-    
-}
-
-.search-box {
-   
-}
-
-
-
-select {
-    text-rendering: auto !important; 
-}
-
-
-
-
-#state {
-  padding: 0px 15px; 
-}
-
-
-
 .description {
     width: 75%;
     margin: 0 auto;
     background-color: white;
 }
-
-
-
+.searchDiv {
+    margin-left: 3rem;
+    width: 60%;
+}
 .brewName {
     font-weight: 500;
-    font-size: 1.25rem;
+    font-size: 2rem;
 }
-
+.history .brewName, .history .content {
+    font-size: 1.25rem !important;  
+}
 .safe-div {
     background-color: rgb(66, 173, 120);
     text-align: center;
 }
-
 .main-header {
     padding-left: 20px;
     padding-top: 20px;
 }
 .sticky	{
 	position: sticky;
-  	top: 30px;
+  	top: 30px;  
 }
-
 .resultsAndHistory {
     border-top: 3px solid white;
     margin-top: 10px;
@@ -87,54 +70,37 @@ select {
     background-color: white;
     width: 100%;
     margin-right: 0;
-    margin-left: 0
-}
-
-.savedTitle {
-    text-align: center;
-    color: black;
+    margin-left: 0;
+    min-height: 600px;
+   
 }
 .result-div {
-
     border: 2px solid rgb(110, 110, 110);
-    margin: 10px !important;
     background-color: rgb(126, 163, 145);
-    color: white;
+    color: white;   
 }
-
-.results .result-div .card-header .brewName {
-    
+.results .result-div .card-header .brewName {   
     font-weight: 500;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
 }
-
-
 .result-div .nearestName {
     color: white;
     font-weight: 600;
-    border-left: none;
     padding-bottom: 0;
 }
-
 .result-div .nearestStreet {
     border-left: none;
 }
-
-.titleAndButton {
-  
-    margin-left: 10px;
+.titleAndButton {  
     display: flex;
     flex-direction: row;
 }
-
 .delete-btn {
     margin-left: auto;
 }
-
 .history .result-div {
     overflow: hidden;
 }
-
 .nearBtn {
     margin-right: auto;
     margin-left: auto;
@@ -142,61 +108,11 @@ select {
     white-space: normal;
     height: auto;
 }
-
-.no-input {
-    width: 35%;
-    border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
-}
-
-.no-input footer {
-    background-color:rgb(110, 110, 110);
-    color: white;
-    display: flex;
-    flex-direction: column;
-}
-
-.no-input footer p {
-    text-align: center;
-    margin-bottom: 15px;
-}
-
-.noResponse {
-    width: 35%;
-    border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
-    margin-right: auto;
-    margin-left: auto;
-}
-.stateSelect .modal-content {
-    width: 35%;
-    border-top-left-radius: 7px;
-    border-top-right-radius: 7px;
-    margin-right: auto;
-    margin-left: auto;
-}
-.noResponse footer {
-    background-color:rgb(110, 110, 110);
-    color: white;
-    display: flex;
-    flex-direction: column;
-}
-
-.noResponse footer p {
-    text-align: center;
-    margin-bottom: 15px;
-}
-
-.icon-button {
-    height:fit-content;
-  
-    margin-left: 10px;
-    margin-right: -10px;
+.moreBtn, .lessBtn {
     background-color:rgb(126, 163, 145); 
-    color: white;
     border: none;
+    color:  #363636;
 }
-
 .save-button {
     margin-right: -25px;
     height:fit-content;  
@@ -205,26 +121,7 @@ select {
 }
 
 @media only screen and (max-width: 768px) {
-    .results .result-div {
-        margin-left: 0 !important;
-        margin-left: 10px !important;
-    }
 
-    .history .result-div {
-        margin-right: 0 !important;
-        margin-right: 10px !important;
-    }
-    .search {
-      
-        width: 100%;
-    }  
-    .searchBtn {
-        width:100%;
-    }
-}
-
-
-@media only screen and (max-width: 500px) {
     #figure {
         height: 750px;
         width: 100%;
@@ -237,52 +134,21 @@ select {
         font-size: 2rem !important;
         border-radius: 0;
     }
-
+    .field {
+        width:70%; 
+    }
     .searchDiv {
-        flex-direction: column;
-        width: 80%;
-        margin: 50px;
+        width:100%;
+        margin-left: 0px !important;
     }
-
-  
-
-    .search-box-div {
-        width: 100%;
-    }
-
-    .search-control {
-        margin-right:auto;
-        margin-left: auto;
-        width: 100%;
-        overflow: hidden;
-    }
-
-    .search-box {
-        margin-left: 0;
-        width: 100%;
-    }
-
-    #state {
-        margin-top: 0;
-    }
-
-    .search {
-      
-        width: 100%;
-    }
-
-    .searchBtn a {
-        width: 100%;
-    }
-
     .description {
+        font-size: 1rem;
         margin-top: 30px;
         margin-bottom: 20px;
-        width: 100%;
+        width: 350px;
         border-radius: 0;
         color:rgb(202, 221, 212);
-        background-color: transparent;
-     
+        background-color: transparent; 
     }
     .subtitle {
         display: none;
@@ -290,19 +156,13 @@ select {
         margin-bottom: 100px !important;
         font-weight: 500;
     }
-
-
-
     .history .result-div .icon-button {
-        width: 100%;
-        
+        width: 100%;    
     }
-    
     .save-button {
         height:fit-content;  
-     
     }
-    
+
 
 } 
   
