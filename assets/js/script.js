@@ -104,13 +104,11 @@ $('.oldCities').change(function() {
   formSubmitHandler()
 })
 
-document.querySelector("#searchButton").addEventListener("click", searchButton);
-
-function searchButton() {
+$(".searchDiv").on("click", '.search', function() {
   city = cityInputEl.val().toUpperCase()
   input = city
   formSubmitHandler()
-}
+})
 
 
 // Fetch lists of safe unisex restrooms using city and "Brew". 
