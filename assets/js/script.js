@@ -104,11 +104,13 @@ $('.oldCities').change(function() {
   formSubmitHandler()
 })
 
-$(".searchDiv").on("click", '.search', function() {
+document.querySelector("#searchButton").addEventListener("click", searchButton);
+
+function searchButton() {
   city = cityInputEl.val().toUpperCase()
   input = city
   formSubmitHandler()
-})
+}
 
 
 // Fetch lists of safe unisex restrooms using city and "Brew". 
@@ -197,6 +199,7 @@ function getBreweries() {
 }
         function displayBreweries() {       
           $('#searched').css('display', '')
+          location.href = '#searched'
          //  console.log(allBrew)
          //   console.log(selectedState)
 
@@ -356,7 +359,7 @@ $('nav').on("click", "a", function() {
 $('nav').on("click", ".navbar-link", function() {
   $('.oldTowns').children().remove()
 for (let i=0; i < uniqueCities.length; i++) {
-  $('<a href="#searched" class="navbar-item town" value ='+ uniqueCities[i] +' id=' + i + '>'+ uniqueCities[i] +'</a>').appendTo($('.oldTowns'))
+  $('<a  class="navbar-item town" value ='+ uniqueCities[i] +' id=' + i + '>'+ uniqueCities[i] +'</a>').appendTo($('.oldTowns'))
 }
  $('.navbar-dropdown').toggleClass('is-hidden-touch');
 })
@@ -364,5 +367,6 @@ for (let i=0; i < uniqueCities.length; i++) {
 $('.oldTowns').on("click", ".town", function() {
   $('.navbar-dropdown').toggleClass('is-hidden-touch');
   city = $(this).text(); 
+ 
   formSubmitHandler()
 })
