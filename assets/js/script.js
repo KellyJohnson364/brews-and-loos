@@ -356,10 +356,14 @@ $('nav').on("click", "a", function() {
 
 $('nav').on("click", ".navbar-link", function() {
   $('.oldTowns').children().remove()
-for (let i=0; i < uniqueCities.length; i++) {
-  $('<a  class="navbar-item town" value ='+ uniqueCities[i] +' id=' + i + '>'+ uniqueCities[i] +'</a>').appendTo($('.oldTowns'))
+  $('<a  class="navbar-item town" value ="Grand Rapids"></a>').appendTo($('.oldTowns'))
+  $('.navbar-dropdown').toggleClass('is-hidden-touch');
+    for (let i=0; i < uniqueCities.length; i++) {
+      if (uniqueCities[i]) {
+    $('<a  class="navbar-item town" value ='+ uniqueCities[i] +' id=' + i + '>'+ uniqueCities[i] +'</a>').appendTo($('.oldTowns'))
 }
- $('.navbar-dropdown').toggleClass('is-hidden-touch');
+      $('.navbar-dropdown').toggleClass('is-hidden-touch');
+    } 
 })
 
 $('.oldTowns').on("click", ".town", function() {
