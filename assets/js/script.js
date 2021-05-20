@@ -104,7 +104,7 @@ $('.oldCities').change(function() {
   formSubmitHandler()
 })
 
-$(".searchDiv").on("click", '.search', function() {
+$(".searchDiv").on("submit", '.search', function() {
   city = cityInputEl.val().toUpperCase()
   input = city
   formSubmitHandler()
