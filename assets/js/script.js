@@ -29,6 +29,7 @@ let historyStored = JSON.parse(localStorage.getItem("history-info")) || [];
 function renderCities() {
   cityEl.children().remove()
   let remember = JSON.parse(localStorage.getItem("cities"))
+  console.log(remember)
   if (remember && !input) {
     uniqueCities = remember
   }else if (remember && input) {
@@ -37,8 +38,9 @@ function renderCities() {
     uniqueCities = [...new Set(list)];
   }else {
     uniqueCities.unshift(input)
+    console.log(uniqueCities)
   }
-   if (uniqueCities) {
+   if (uniqueCities[0] !== undefined) {
      console.log(uniqueCities)
      localStorage.setItem("cities", JSON.stringify(uniqueCities));
      $('<option value="">Select</option>').appendTo(cityEl);
@@ -104,7 +106,7 @@ $('.oldCities').change(function() {
   formSubmitHandler()
 })
 
-$(".searchDiv").on("touchstart", '.search', function() {
+$(".searchDiv").on("click", '.search', function() {
   city = cityInputEl.val().toUpperCase()
   input = city
   formSubmitHandler()
@@ -356,8 +358,8 @@ $('nav').on("click", "a", function() {
 
 $('nav').on("click", ".navbar-link", function() {
   $('.oldTowns').children().remove()
-  $('<a  class="navbar-item town" value ="Grand Rapids"></a>').appendTo($('.oldTowns'))
-  $('.navbar-dropdown').toggleClass('is-hidden-touch');
+  $('<a  class="navbar-item town" value ="Grand Rapids">Grand Rapids</a>').appendTo($('.oldTowns'))
+
     for (let i=0; i < uniqueCities.length; i++) {
       if (uniqueCities[i]) {
     $('<a  class="navbar-item town" value ='+ uniqueCities[i] +' id=' + i + '>'+ uniqueCities[i] +'</a>').appendTo($('.oldTowns'))
