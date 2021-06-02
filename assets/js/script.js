@@ -18,6 +18,7 @@ let uniqueStates=[];
 let brewName;
 let lat; 
 let long;
+let remember=[]
 let lessBtn;
 let moreBtn;
 let nearBtn;
@@ -28,24 +29,27 @@ let historyStored = JSON.parse(localStorage.getItem("history-info")) || [];
 
 function renderCities() {
   cityEl.children().remove()
-  let remember = JSON.parse(localStorage.getItem("cities"))
-  console.log(remember)
+  $('.oldTowns').children().remove()
+  remember = JSON.parse(localStorage.getItem("cities"))
   if (remember && !input) {
     uniqueCities = remember
   }else if (remember && input) {
-    remember.unshift(input)
+    remember.unshift(input) 
     list = remember.toString().split(",");
     uniqueCities = [...new Set(list)];
-  }else {
+  }else if (!remember && input) {
     uniqueCities.unshift(input)
-    console.log(uniqueCities)
+  }else {
+    uniqueCities = []
   }
-   if (uniqueCities[0] !== undefined) {
+
+   if (uniqueCities.length > 0) {
      console.log(uniqueCities)
      localStorage.setItem("cities", JSON.stringify(uniqueCities));
      $('<option value="">Select</option>').appendTo(cityEl);
      for (let i=0; i < uniqueCities.length; i++) {
       $('<option value ='+ uniqueCities[i] +' id=' + i + '>'+ uniqueCities[i] +'</option>').appendTo(cityEl);
+      $('<a  class="navbar-item town" value ='+ uniqueCities[i] +' id=' + i + '>'+ uniqueCities[i] +'</a>').appendTo($('.oldTowns'))
      }
     }
 }    
@@ -100,7 +104,12 @@ function formSubmitHandler() {
     }
     
 }
-
+$('.oldTowns').on("click", ".town", function() {
+  $('.town').toggleClass('is-hidden-touch');
+  city = $(this).text(); 
+ 
+  formSubmitHandler()
+})
 $('.oldCities').change(function() {
   city = $('.oldCities option:selected').text(); 
   formSubmitHandler()
@@ -189,7 +198,7 @@ function getBreweries() {
                       displayBreweries();
                       states = []
                       cityState = []
-                      console.log(uniqueStates)
+                    // console.log(uniqueStates)
                   })    
                 }else {
                   states = [];
@@ -211,9 +220,9 @@ function getBreweries() {
            
             if(allBrew[i].state == selectedState) {
               city = city.replaceAll("%20", " ")  
-              //Dynamically create divs for Brewery information
               
-
+//Dynamically create divs for Brewery information
+              
               let resultDiv = $('<div class="result-div ml-3"></div>');
                   headDiv = $('<header id="'+i+'"class="card-header moreDiv"></header>')
               let contentDiv = $('<div style="display: none" id="result' + i + '" class="content content'+i+'"></div)')
@@ -351,6 +360,7 @@ $(".resultsAndHistory").on("click", ".delete-btn", function() {
   $(".save-button").text("Save It");
   renderHistory=[]
 })
+// bottom nav bar
 
 $('nav').on("click", "a", function() {
  
@@ -359,20 +369,7 @@ $('nav').on("click", "a", function() {
 })
 
 $('nav').on("click", ".navbar-link", function() {
-  $('.oldTowns').children().remove()
-  $('<a  class="navbar-item town" value ="Grand Rapids">Grand Rapids</a>').appendTo($('.oldTowns'))
-
-    for (let i=0; i < uniqueCities.length; i++) {
-      if (uniqueCities[i]) {
-    $('<a  class="navbar-item town" value ='+ uniqueCities[i] +' id=' + i + '>'+ uniqueCities[i] +'</a>').appendTo($('.oldTowns'))
-}
-      $('.navbar-dropdown').toggleClass('is-hidden-touch');
-    } 
-})
-
-$('.oldTowns').on("click", ".town", function() {
-  $('.navbar-dropdown').toggleClass('is-hidden-touch');
-  city = $(this).text(); 
  
-  formSubmitHandler()
+    $('.town').toggleClass('is-hidden-touch'); 
 })
+
