@@ -92,6 +92,7 @@ function formSubmitHandler() {
  //modal for city and state entry
         const Toast = Swal.mixin({
           toast: true,
+          background: '#e7e4de',
           position: 'center',
           showConfirmButton: false,
           timer: 2000,
@@ -158,6 +159,7 @@ function getBreweries() {
           if (response.length == 0) {
             const Toast = Swal.mixin({
               toast: true,
+              background: '#e7e4de',
               position: 'center',
               showConfirmButton: false,
               timer: 2000,
@@ -186,6 +188,7 @@ function getBreweries() {
                   }
                   Swal.fire({
                     position: 'center',
+                    background: '#e7e4de',
                     confirmButtonColor: 'rgb(126, 163, 145)',
                     title: 'Select state',
                     input: 'select',
@@ -223,7 +226,7 @@ function getBreweries() {
               
 //Dynamically create divs for Brewery information
               
-              let resultDiv = $('<div class="result-div ml-3"></div>');
+              let resultDiv = $('<div class="result-div "></div>');
                   headDiv = $('<header id="'+i+'"class="card-header moreDiv"></header>')
               let contentDiv = $('<div style="display: none" id="result' + i + '" class="content content'+i+'"></div)')
               let footDiv = $('<footer style="display: none" class="card-footer foot-div"></footer>')
@@ -337,7 +340,7 @@ resultContainer.on("click", ".save-button", function() {
      
       historyStored.push(thisBrew);
       localStorage.setItem("history-info", JSON.stringify(historyStored));
-      history.append('<div class="result-div ml-3">' + thisBrew + '</div>');
+      history.append('<div class="result-div">' + thisBrew + '</div>');
       history.children($('.result-div')).children($('.foot-div')).children(".save-button").remove();
       ($('.history .card-header')).siblings().css('display', 'none')
       moreBtn = $('<button class="card-header-icon moreBtn" aria-label="more options"><span class="icon"><i class="fa fa-chevron-down icon" aria-hidden="true"></i></span></button>')

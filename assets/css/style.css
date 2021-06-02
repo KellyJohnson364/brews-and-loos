@@ -1,13 +1,21 @@
 * :not(.icon) {   
     font-family: 'Girassol', cursive !important;
     font-size: 1.5rem; 
+    
 }
 html {
-	scroll-behavior: smooth
+	scroll-behavior: smooth;
+    background-color: #eeebe7;
+    
 }
 body {
     min-height: 100vh;
     border-radius: 0px;
+    
+}
+.has-navbar-fixed-bottom {
+    padding-bottom: 3.25rem;
+    background-color: #eeebe7;
 }
 #figure {
     height: 600px;
@@ -31,19 +39,20 @@ body {
 .siteTitle {
     font-size: 4rem !important;
     max-width: 75%;
-    margin-top: 150px;
+    margin-top: 150px !important;
     margin-right: 0 !important;
     margin-left: 0 !important;
-    background-color: white; 
+    background-color: #e7e4de;
 }
 .description {
-    width: 75%;
+    width: 50%;
     margin: 0 auto;
-    background-color: white;
+    background-color: #eeebe7;
 }
 .searchDiv {
     margin-left: 3rem;
     width: 60%;
+    background-color: #eeebe7;
 }
 .brewName {
     font-weight: 500;
@@ -65,14 +74,11 @@ body {
   	top: 30px;  
 }
 .resultsAndHistory {
-    border-top: 3px solid white;
-    margin-top: 10px;
     padding-top: 10px;
-    background-color: white;
     width: 100%;
-    margin-right: 0;
-    margin-left: 0;
-    min-height: 600px;
+    margin: 0px !important;
+    min-height: 400px;
+    background-color: #eeebe7;
    
 }
 .result-div {
