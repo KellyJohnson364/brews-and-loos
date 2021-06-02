@@ -49,7 +49,7 @@ function renderCities() {
      $('<option value="">Select</option>').appendTo(cityEl);
      for (let i=0; i < uniqueCities.length; i++) {
       $('<option value ='+ uniqueCities[i] +' id=' + i + '>'+ uniqueCities[i] +'</option>').appendTo(cityEl);
-      $('<a  class="navbar-item town" value ='+ uniqueCities[i] +' id=' + i + '>'+ uniqueCities[i] +'</a>').appendTo($('.oldTowns'))
+      $('<a  class="navbar-item town is-hidden-touch" value ='+ uniqueCities[i] +' id=' + i + '>'+ uniqueCities[i] +'</a>').appendTo($('.oldTowns'))
      }
     }
 }    
