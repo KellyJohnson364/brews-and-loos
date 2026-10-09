@@ -150,7 +150,7 @@ function getRestrooms() {
 // fetch breweries by city and then ensure correct state.  
 
 function getBreweries() {
-    let brewUrl = 'https://api.openbrewerydb.org/breweries/search?query=' + city +''
+    let brewUrl = 'https://api.openbrewerydb.org/v1/breweries/search?query=' + city +''
   
       fetch(brewUrl)
         .then(response => response.json())
